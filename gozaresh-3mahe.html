@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گزارش سه‌ماهه پژوهش‌سرا | دانشگاه شما</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header with Animated Waves */
+        .report-header {
+            height: 60vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .header-content {
+            z-index: 2;
+            animation: fadeInUp 1s;
+        }
+        
+        .report-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .report-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Animated Waves */
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            overflow: hidden;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="rgba(255,255,255,0.1)" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="rgba(255,255,255,0.1)" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+            animation: wave 10s linear infinite;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        .wave:nth-child(2) {
+            animation: wave 8s linear infinite reverse;
+            opacity: 0.7;
+        }
+        
+        .wave:nth-child(3) {
+            animation: wave 12s linear infinite;
+            opacity: 0.3;
+        }
+        
+        /* Report Summary Cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 0 20px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .summary-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .summary-card:nth-child(1) { animation-delay: 0.1s; }
+        .summary-card:nth-child(2) { animation-delay: 0.2s; }
+        .summary-card:nth-child(3) { animation-delay: 0.3s; }
+        .summary-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        .summary-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .summary-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+        
+        .summary-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2a5298;
+        }
+        
+        .summary-card .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .summary-card .number::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            border-radius: 3px;
+        }
+        
+        .summary-card p {
+            color: #6c757d;
+            margin-top: 15px;
+        }
+        
+        /* Report Sections */
+        .report-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: #1e3c72;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            border-radius: 2px;
+        }
+        
+        .section-header p {
+            max-width: 800px;
+            margin: 15px auto 0;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        /* Charts Container */
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chart-card h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2a5298;
+        }
+        
+        /* Progress Bars */
+        .progress-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .progress-item {
+            margin-bottom: 25px;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        
+        .progress-percent {
+            font-weight: bold;
+            color: #2a5298;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* Research Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .project-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .project-description {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .project-link {
+            display: inline-block;
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .project-link:hover {
+            color: #1e3c72;
+            transform: translateX(5px);
+        }
+        
+        .project-link i {
+            margin-right: 5px;
+        }
+        
+        /* Download Report */
+        .download-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(30, 60, 114, 0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 60, 114, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(30, 60, 114, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 60, 114, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .report-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .report-header p {
+                font-size: 1rem;
+            }
+            
+            .summary-cards {
+                margin-top: -30px;
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #8BC34A;
+            --accent-color: #FFC107;
+            --light-color: #F1F8E9;
+            --dark-color: #33691E;
+            --text-color: #263238;
+            --white: #FFFFFF;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23FFFFFF" stroke-width="0.5" stroke-dasharray="5,5" /></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-left: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .card h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-left: 8px;
+            color: var(--primary-color);
+        }
+        
+        .stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        
+        .progress-container {
+            margin: 2rem 0;
+        }
+        
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #E0E0E0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+            border-radius: 5px;
+            transition: width 1s ease-in-out;
+            width: 0;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab:hover:not(.active) {
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .data-table th {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .data-table tr:hover {
+            background-color: rgba(139, 195, 74, 0.1);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background-color: #E8F5E9;
+            color: var(--dark-color);
+        }
+        
+        .badge-warning {
+            background-color: #FFF8E1;
+            color: #FF8F00;
+        }
+        
+        .badge-danger {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
+        }
+        
+        .floating-btn i {
+            font-size: 1.5rem;
+        }
+        
+        /* Animation classes */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+        
+        .rotate {
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Animated Waves -->
+    <header class="report-header">
+        <div class="header-content">
+            <h1>گزارش سه‌ماهه پژوهش‌سرا</h1>
+            <p>خلاصه‌ای از فعالیت‌ها، دستاوردها و پروژه‌های تحقیقاتی انجام شده در سه‌ماهه آخر سال 1403</p>
+        </div>
+        
+        <div class="waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </header>
+    
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+        <div class="summary-card">
+            <i class="fas fa-flask"></i>
+            <h3>پروژه‌های تحقیقاتی</h3>
+            <div class="number" id="projects-count">۰</div>
+            <p>پروژه در حال اجرا</p>
+        </div>
+        
+        <div class="summary-card">
+            <i class="fas fa-users"></i>
+            <h3>اعضای پژوهش‌سرا</h3>
+            <div class="number" id="members-count">۰</div>
+            <p>پژوهشگر فعال</p>
+        </div>
+        
+        <div class="summary-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>مقالات منتشر شده</h3>
+            <div class="number" id="papers-count">۰</div>
+            <p>مقاله علمی</p>
+        </div>
+        
+        <div class="summary-card">
+            <i class="fas fa-percentage"></i>
+            <h3>پیشرفت کلی</h3>
+            <div class="number" id="progress-count">۰%</div>
+            <p>از اهداف سه‌ماهه</p>
+        </div>
+    </div>
+    
+    <!-- Research Progress Section -->
+    <section class="report-section">
+        <div class="section-header">
+            <h2>پیشرفت تحقیقات</h2>
+            <p>وضعیت پیشرفت پروژه‌های تحقیقاتی در سه‌ماهه اول سال ۱۴۰۳</p>
+        </div>
+        
+        <div class="progress-section">
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">پروژه هوش مصنوعی در پزشکی</span>
+                    <span class="progress-percent">75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="75"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">سیستم مدیریت انرژی هوشمند</span>
+                    <span class="progress-percent">60%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="60"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">پلتفرم آموزش آنلاین</span>
+                    <span class="progress-percent">45%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="45"></div>
+                </div>
+            </div>
+            
+            <div class="progress-item">
+                <div class="progress-header">
+                    <span class="progress-title">رباتیک صنعتی</span>
+                    <span class="progress-percent">30%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-width="30"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Charts Section -->
+    <section class="report-section">
+        <div class="section-header">
+            <h2>آمار و ارقام</h2>
+            <p>تحلیل آماری فعالیت‌های پژوهش‌سرا در سه‌ماهه گذشته</p>
+        </div>
+        
+        <div class="charts-container">
+            <div class="chart-card">
+                <h3>توزیع پروژه‌ها بر اساس رشته‌ها</h3>
+                <canvas id="fields-chart"></canvas>
+            </div>
+            
+            <div class="chart-card">
+                <h3>میزان پیشرفت فصلی</h3>
+                <canvas id="progress-chart"></canvas>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="report-section">
+        <div class="section-header">
+            <h2>پروژه‌های برجسته</h2>
+            <p>نمونه‌ای از پروژه‌های تحقیقاتی در حال اجرا در پژوهش‌سرا</p>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه هوش مصنوعی">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">هوش مصنوعی</span>
+                    <h3 class="project-title">تشخیص بیماری‌های چشمی با هوش مصنوعی</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۱</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۳/۰۱/۱۵</span>
+                    </div>
+                    <p class="project-description">طراحی سیستم هوشمند تشخیص بیماری‌های شبکیه چشم با استفاده از الگوریتم‌های یادگیری عمیق</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه رباتیک">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">رباتیک</span>
+                    <h3 class="project-title">ربات کمک‌رسان در محیط‌های پرخطر</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۲</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۳/۰۲/۰۱</span>
+                    </div>
+                    <p class="project-description">طراحی و ساخت ربات امدادگر برای عملیات در محیط‌های خطرناک و غیرقابل دسترس</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه انرژی">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">انرژی</span>
+                    <h3 class="project-title">بهینه‌سازی مصرف انرژی در ساختمان‌های هوشمند</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۳</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۲/۱۲/۱۰</span>
+                    </div>
+                    <p class="project-description">طراحی سیستم مدیریت هوشمند انرژی برای کاهش مصرف در ساختمان‌های اداری</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه آموزش">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">آموزش</span>
+                    <h3 class="project-title">پلتفرم آموزش آنلاین با واقعیت مجازی</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۴</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۳/۰۱/۲۰</span>
+                    </div>
+                    <p class="project-description">توسعه سامانه آموزش مجازی با قابلیت شبیه‌سازی محیط‌های آموزشی با VR</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه داده‌کاوی">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">داده‌کاوی</span>
+                    <h3 class="project-title">تحلیل رفتار مشتریان با داده‌کاوی</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۵</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۳/۰۳/۰۵</span>
+                    </div>
+                    <p class="project-description">طراحی سیستم پیش‌بینی رفتار مشتریان با استفاده از الگوریتم‌های یادگیری ماشین</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" alt="پروژه اینترنت اشیا">
+                </div>
+                <div class="project-content">
+                    <span class="project-category">اینترنت اشیا</span>
+                    <h3 class="project-title">شهر هوشمند با اینترنت اشیا</h3>
+                    <div class="project-meta">
+                        <span><i class="far fa-user"></i> تیم پژوهشی شماره ۶</span>
+                        <span><i class="far fa-calendar"></i> ۱۴۰۳/۰۲/۱۵</span>
+                    </div>
+                    <p class="project-description">پیاده‌سازی نمونه اولیه سیستم مدیریت شهر هوشمند مبتنی بر IoT</p>
+                    <a href="#" class="project-link">جزئیات بیشتر <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Download Section -->
+    <section class="report-section download-section">
+        <a href="#" class="download-btn">
+            <i class="fas fa-download"></i> دریافت گزارش کامل
+        </a>
+    </section>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/80" alt="پژوهش سرای جابر ابن حیان">
+            <h1>گزارش عملکرد پژوهش سرای جابر ابن حیان بروجرد</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="overview">نمای کلی</div>
+            <div class="tab" data-tab="projects">پروژه‌ها</div>
+            <div class="tab" data-tab="students">دانش‌آموزان</div>
+            <div class="tab" data-tab="achievements">دستاوردها</div>
+        </div>
+        
+        <div class="tab-content active" id="overview">
+            <div class="dashboard">
+                <div class="card">
+                    <h3><i class="fas fa-project-diagram"></i> پروژه‌های فعال</h3>
+                    <div class="stat" id="active-projects">0</div>
+                    <div class="progress-title">
+                        <span>پیشرفت کلی</span>
+                        <span id="overall-progress">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="overall-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-users"></i> دانش‌آموزان مشارکت‌کننده</h3>
+                    <div class="stat" id="participating-students">0</div>
+                    <div>در <span id="active-groups">0</span> گروه پژوهشی</div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-trophy"></i> جوایز و افتخارات</h3>
+                    <div class="stat" id="awards-count">0</div>
+                    <div>در سال تحصیلی جاری</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i> روند پیشرفت پروژه‌ها</h3>
+                <div class="chart-container">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="projects">
+            <div class="card">
+                <h3><i class="fas fa-list-ul"></i> لیست پروژه‌ها</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>عنوان پروژه</th>
+                            <th>سرپرست</th>
+                            <th>تاریخ شروع</th>
+                            <th>پیشرفت</th>
+                            <th>وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projects-table">
+                        <!-- Projects will be loaded here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="students">
+            <div class="dashboard">
+                <div class="card">
+                    <h3><i class="fas fa-user-graduate"></i> توزیع دانش‌آموزان</h3>
+                    <div class="chart-container">
+                        <canvas id="students-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> دانش‌آموزان برتر</h3>
+                    <div id="top-students">
+                        <!-- Top students will be loaded here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="achievements">
+            <div class="card">
+                <h3><i class="fas fa-medal"></i> دستاوردهای سال جاری</h3>
+                <div id="achievements-list">
+                    <!-- Achievements will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-btn pulse" id="print-btn">
+        <i class="fas fa-print"></i>
+    </div>
+    
+    <footer>
+        <p>© 1404 پژوهش سرای دانش آموزی جابر ابن حیان بروجرد. تمامی حقوق محفوظ است.</p>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Animated counters
+            function animateValue(id, start, end, duration) {
+                const obj = document.getElementById(id);
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+            
+            // Initialize stats with animation
+            animateValue('active-projects', 0, 24, 1000);
+            animateValue('participating-students', 0, 136, 1000);
+            animateValue('awards-count', 0, 15, 1000);
+            animateValue('active-groups', 0, 18, 1000);
+            
+            // Progress bar animation
+            setTimeout(() => {
+                document.getElementById('overall-progress').textContent = '78%';
+                document.getElementById('overall-progress-bar').style.width = '78%';
+            }, 500);
+            
+            // Sample projects data
+            const projects = [
+                { title: "بررسی اثرات آلودگی هوا بر رشد گیاهان", supervisor: "دکتر احمدی", startDate: "1402/07/15", progress: 85, status: "در حال انجام" },
+                { title: "طراحی سیستم هوشمند آبیاری", supervisor: "مهندس محمدی", startDate: "1402/08/01", progress: 60, status: "در حال انجام" },
+                { title: "بررسی خواص ضد میکروبی گیاهان دارویی", supervisor: "دکتر حسینی", startDate: "1402/06/20", progress: 100, status: "تکمیل شده" },
+                { title: "ساخت ربات مسیریاب", supervisor: "مهندس کریمی", startDate: "1402/09/10", progress: 45, status: "در حال انجام" },
+                { title: "بررسی اثرات موسیقی بر رشد گیاهان", supervisor: "دکتر رضایی", startDate: "1402/05/15", progress: 100, status: "تکمیل شده" }
+            ];
+            
+            // Populate projects table
+            const projectsTable = document.getElementById('projects-table');
+            projects.forEach(project => {
+                const row = document.createElement('tr');
+                
+                const statusClass = project.status === "تکمیل شده" ? "badge-success" : 
+                                  project.progress < 50 ? "badge-danger" : "badge-warning";
+                
+                row.innerHTML = `
+                    <td>${project.title}</td>
+                    <td>${project.supervisor}</td>
+                    <td>${project.startDate}</td>
+                    <td>
+                        <div class="progress-title">
+                            <span>${project.progress}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${project.progress}%"></div>
+                        </div>
+                    </td>
+                    <td><span class="badge ${statusClass}">${project.status}</span></td>
+                `;
+                
+                projectsTable.appendChild(row);
+            });
+            
+            // Top students data
+            const topStudents = [
+                { name: "محمد حسینی", grade: "یازدهم", projects: 4, awards: 3 },
+                { name: "فاطمه محمدی", grade: "دهم", projects: 3, awards: 2 },
+                { name: "علی رضایی", grade: "دوازدهم", projects: 5, awards: 4 },
+                { name: "زهرا کریمی", grade: "یازدهم", projects: 2, awards: 1 },
+                { name: "امیر احمدی", grade: "دهم", projects: 3, awards: 2 }
+            ];
+            
+            // Populate top students
+            const topStudentsContainer = document.getElementById('top-students');
+            topStudents.forEach((student, index) => {
+                const studentEl = document.createElement('div');
+                studentEl.className = 'student-item';
+                studentEl.style.padding = '10px';
+                studentEl.style.borderBottom = '1px solid #eee';
+                studentEl.style.display = 'flex';
+                studentEl.style.justifyContent = 'space-between';
+                studentEl.style.alignItems = 'center';
+                
+                studentEl.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <span style="background-color: var(--accent-color); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-left: 10px;">${index + 1}</span>
+                        <div>
+                            <div style="font-weight: 600;">${student.name}</div>
+                            <div style="font-size: 0.8rem; color: #666;">پایه ${student.grade}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: left;">
+                        <div style="font-size: 0.9rem;">${student.projects} پروژه</div>
+                        <div style="font-size: 0.8rem; color: var(--accent-color);">${student.awards} جایزه</div>
+                    </div>
+                `;
+                
+                topStudentsContainer.appendChild(studentEl);
+            });
+            
+            // Achievements data
+            const achievements = [
+                "کسب مقام اول جشنواره جوان خوارزمی در بخش زیست‌فناوری",
+                "کسب 3 مدال طلا در المپیادهای علمی دانش‌آموزی",
+                "انتخاب 5 پروژه برای نمایش در نمایشگاه بین‌المللی علوم و فناوری",
+                "کسب مقام دوم در مسابقات رباتیک دانش‌آموزی کشور",
+                "انتشار 2 مقاله علمی در مجلات معتبر دانش‌آموزی"
+            ];
+            
+            // Populate achievements
+            const achievementsList = document.getElementById('achievements-list');
+            achievements.forEach(achievement => {
+                const achievementEl = document.createElement('div');
+                achievementEl.style.padding = '12px';
+                achievementEl.style.borderBottom = '1px solid #eee';
+                achievementEl.style.display = 'flex';
+                achievementEl.style.alignItems = 'center';
+                
+                achievementEl.innerHTML = `
+                    <i class="fas fa-star" style="color: var(--accent-color); margin-left: 10px;"></i>
+                    <span>${achievement}</span>
+                `;
+                
+                achievementsList.appendChild(achievementEl);
+            });
+            
+            // Initialize charts
+            const progressCtx = document.getElementById('progress-chart').getContext('2d');
+            const progressChart = new Chart(progressCtx, {
+                type: 'line',
+                data: {
+                    labels: ['مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+                    datasets: [
+                        {
+                            label: 'پروژه‌های شروع شده',
+                            data: [2, 5, 8, 10, 15, 18],
+                            borderColor: 'rgba(76, 175, 80, 1)',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'پروژه‌های تکمیل شده',
+                            data: [0, 1, 3, 5, 8, 12],
+                            borderColor: 'rgba(255, 193, 7, 1)',
+                            backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            rtl: true
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            const studentsCtx = document.getElementById('students-chart').getContext('2d');
+            const studentsChart = new Chart(studentsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['پایه دهم', 'پایه یازدهم', 'پایه دوازدهم'],
+                    datasets: [{
+                        data: [45, 62, 29],
+                        backgroundColor: [
+                            'rgba(76, 175, 80, 0.7)',
+                            'rgba(139, 195, 74, 0.7)',
+                            'rgba(255, 193, 7, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(76, 175, 80, 1)',
+                            'rgba(139, 195, 74, 1)',
+                            'rgba(255, 193, 7, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            rtl: true
+                        }
+                    }
+                }
+            });
+            
+            // Print button functionality
+            document.getElementById('print-btn').addEventListener('click', () => {
+                // Add a cool effect
+                const btn = document.getElementById('print-btn');
+                btn.classList.remove('pulse');
+                btn.classList.add('rotate');
+                
+                setTimeout(() => {
+                    btn.classList.remove('rotate');
+                    btn.classList.add('pulse');
+                    window.print();
+                }, 1000);
+            });
+            
+            // Add some interactive effects
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                    card.style.boxShadow = '0 12px 20px rgba(0, 0, 0, 0.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+    <script>
+        // Animated Numbers
+        function animateValue(id, start, end, duration, suffix = '') {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Start animations when page loads
+        window.addEventListener('load', () => {
+            animateValue('projects-count', 0, 18, 2000);
+            animateValue('members-count', 0, 42, 2000);
+            animateValue('papers-count', 0, 9, 2000);
+            animateValue('progress-count', 0, 78, 2000, '%');
+            
+            // Animate progress bars
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        });
+        
+        // Fields Chart
+        const fieldsCtx = document.getElementById('fields-chart').getContext('2d');
+        const fieldsChart = new Chart(fieldsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['هوش مصنوعی', 'رباتیک', 'انرژی', 'آموزش', 'داده‌کاوی', 'اینترنت اشیا'],
+                datasets: [{
+                    data: [25, 20, 15, 15, 15, 10],
+                    backgroundColor: [
+                        '#1e3c72',
+                        '#2a5298',
+                        '#3a6cb3',
+                        '#4d86c9',
+                        '#6ba3e0',
+                        '#8fbff2'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        rtl: true
+                    }
+                }
+            }
+        });
+        
+        // Progress Chart
+        const progressCtx = document.getElementById('progress-chart').getContext('2d');
+        const progressChart = new Chart(progressCtx, {
+            type: 'bar',
+            data: {
+                labels: ['فروردین', 'اردیبهشت', 'خرداد'],
+                datasets: [{
+                    label: 'درصد پیشرفت',
+                    data: [25, 55, 78],
+                    backgroundColor: [
+                        'rgba(30, 60, 114, 0.7)',
+                        'rgba(42, 82, 152, 0.7)',
+                        'rgba(58, 108, 179, 0.7)'
+                    ],
+                    borderColor: [
+                        '#1e3c72',
+                        '#2a5298',
+                        '#3a6cb3'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.project-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animation = `fadeInUp 0.8s forwards`;
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>

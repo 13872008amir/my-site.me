@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جشنواره‌ها | پژوهش سرای جابر ابن حیان بروجرد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #9C27B0;
+            --secondary-color: #BA68C8;
+            --accent-color: #FFC107;
+            --light-color: #F3E5F5;
+            --dark-color: #7B1FA2;
+            --text-color: #212121;
+            --white: #FFFFFF;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23FFFFFF" stroke-width="0.5" stroke-dasharray="5,5" /></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-left: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(156, 39, 176, 0.8), rgba(156, 39, 176, 0.8)), url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)" /></svg>');
+            pointer-events: none;
+        }
+        
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn i {
+            margin-left: 8px;
+        }
+        
+        .festivals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .festival-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .festival-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .festival-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+        
+        .festival-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .festival-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        
+        .festival-date {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            color: var(--white);
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .festival-content {
+            padding: 1.5rem;
+        }
+        
+        .festival-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .festival-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .festival-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .festival-meta i {
+            margin-left: 5px;
+            color: var(--primary-color);
+        }
+        
+        .festival-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .festival-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            display: inline-block;
+            background-color: var(--light-color);
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--secondary-color);
+            z-index: 0;
+        }
+        
+        .winners-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .winner-card {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #EEE;
+            transition: all 0.3s ease;
+        }
+        
+        .winner-card:hover {
+            background-color: rgba(156, 39, 176, 0.05);
+        }
+        
+        .winner-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            margin-left: 15px;
+        }
+        
+        .winner-info {
+            flex: 1;
+        }
+        
+        .winner-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .winner-project {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .winner-prize {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .countdown {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 80px;
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .gallery-section {
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: var(--white);
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+            position: relative;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .festivals-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
+            }
+            
+            .winner-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .winner-avatar {
+                margin-left: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .winner-prize {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/80" alt="پژوهش سرای جابر ابن حیان">
+            <h1>جشنواره‌های پژوهش سرای جابر ابن حیان بروجرد</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="hero">
+            <h2>جشنواره علمی دانش‌آموزی جابربن حیان</h2>
+            <p>بزرگترین رویداد علمی دانش‌آموزی استان لرستان با مشارکت بیش از 500 دانش‌آموز مستعد از سراسر استان</p>
+            <a href="#register" class="btn btn-primary pulse"><i class="fas fa-user-plus"></i> ثبت نام در جشنواره</a>
+        </section>
+        
+        <div class="section-title">
+            <h2>جشنواره‌های پیش رو</h2>
+        </div>
+        
+        <div class="festivals-container">
+            <div class="festival-card">
+                <div class="festival-badge">در حال ثبت نام</div>
+                <div class="festival-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="festival-date">15 آذر 1404</div>
+                </div>
+                <div class="festival-content">
+                    <h3 class="festival-title">جشنواره پژوهش‌های دانش‌آموزی</h3>
+                    <div class="festival-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> سالن همایش‌های پژوهش سرا</span>
+                        <span><i class="fas fa-users"></i> گروهی</span>
+                    </div>
+                    <p class="festival-description">
+                        این جشنواره با هدف شناسایی و پرورش استعدادهای دانش‌آموزان در زمینه‌های مختلف پژوهشی برگزار می‌شود. شرکت‌کنندگان می‌توانند در رشته‌های علوم پایه، فنی و مهندسی، علوم انسانی و هنر شرکت کنند.
+                    </p>
+                    <div class="festival-actions">
+                        <button class="btn-outline view-details" data-festival="1">جزئیات بیشتر</button>
+                        <button class="btn-outline register-btn">ثبت نام</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="festival-card">
+                <div class="festival-badge">به زودی</div>
+                <div class="festival-image" style="background-image: url('https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="festival-date">25 دی 1404</div>
+                </div>
+                <div class="festival-content">
+                    <h3 class="festival-title">مسابقات رباتیک دانش‌آموزی</h3>
+                    <div class="festival-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> آزمایشگاه رباتیک</span>
+                        <span><i class="fas fa-users"></i> انفرادی/گروهی</span>
+                    </div>
+                    <p class="festival-description">
+                        مسابقات رباتیک با شاخه‌های مختلف از جمله ربات‌های جنگجو، مسیریاب و امدادگر برگزار می‌شود. این مسابقات برای دانش‌آموزان مقاطع متوسطه اول و دوم طراحی شده است.
+                    </p>
+                    <div class="festival-actions">
+                        <button class="btn-outline view-details" data-festival="2">جزئیات بیشتر</button>
+                        <button class="btn-outline" disabled>ثبت نام به زودی</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="festival-card">
+                <div class="festival-badge">در حال برگزاری</div>
+                <div class="festival-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="festival-date">10 آبان 1404</div>
+                </div>
+                <div class="festival-content">
+                    <h3 class="festival-title">جشنواره هنرهای علمی</h3>
+                    <div class="festival-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> گالری هنر پژوهش سرا</span>
+                        <span><i class="fas fa-users"></i> انفرادی</span>
+                    </div>
+                    <p class="festival-description">
+                        جشنواره‌ای برای نمایش ارتباط هنر و علم با بخش‌هایی مانند عکاسی علمی، نقاشی‌های مفهومی، مجسمه‌های علمی و سایر آثار هنری با موضوعات علمی و پژوهشی.
+                    </p>
+                    <div class="festival-actions">
+                        <button class="btn-outline view-details" data-festival="3">جزئیات بیشتر</button>
+                        <button class="btn-outline">بازدید از آثار</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <h2>برندگان جشنواره گذشته</h2>
+        </div>
+        
+        <div class="winners-section">
+            <div class="winner-card">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="برنده" class="winner-avatar">
+                <div class="winner-info">
+                    <div class="winner-name">محمد حسینی</div>
+                    <div class="winner-project">سیستم هوشمند آبیاری با استفاده از اینترنت اشیا</div>
+                </div>
+                <div class="winner-prize">جایزه اول</div>
+            </div>
+            
+            <div class="winner-card">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="برنده" class="winner-avatar">
+                <div class="winner-info">
+                    <div class="winner-name">فاطمه محمدی</div>
+                    <div class="winner-project">بررسی خواص ضد میکروبی عصاره گیاهان دارویی منطقه</div>
+                </div>
+                <div class="winner-prize">جایزه دوم</div>
+            </div>
+            
+            <div class="winner-card">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="برنده" class="winner-avatar">
+                <div class="winner-info">
+                    <div class="winner-name">علی رضایی</div>
+                    <div class="winner-project">ربات مسیریاب هوشمند با الگوریتم‌های یادگیری ماشین</div>
+                </div>
+                <div class="winner-prize">جایزه سوم</div>
+            </div>
+            
+            <div class="winner-card">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="برنده" class="winner-avatar">
+                <div class="winner-info">
+                    <div class="winner-name">زهرا کریمی</div>
+                    <div class="winner-project">تأثیر موسیقی بر رشد گیاهان آپارتمانی</div>
+                </div>
+                <div class="winner-prize">جایزه خلاقیت</div>
+            </div>
+        </div>
+        
+        <div class="section-title">
+            <h2>گالری تصاویر جشنواره‌ها</h2>
+        </div>
+        
+        <div class="gallery-section">
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">مراسم افتتاحیه جشنواره 1403</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1541178735493-479c1a27ed24?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">نمایشگاه پروژه‌های دانش‌آموزی</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">داوری پروژه‌ها توسط اساتید</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1524179091875-bf99a9a6af57?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">مسابقات رباتیک جشنواره</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">کارگاه‌های آموزشی جانبی</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="جشنواره">
+                    <div class="gallery-caption">مراسم اختتامیه و اهدای جوایز</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title" id="register">
+            <h2>ثبت نام در جشنواره</h2>
+        </div>
+        
+        <div class="card">
+            <form id="festivalForm" style="max-width: 800px; margin: 0 auto;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">نام و نام خانوادگی</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="school">نام مدرسه</label>
+                        <input type="text" id="school" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="grade">پایه تحصیلی</label>
+                        <select id="grade" class="form-control" required>
+                            <option value="">-- انتخاب کنید --</option>
+                            <option value="7">هفتم</option>
+                            <option value="8">هشتم</option>
+                            <option value="9">نهم</option>
+                            <option value="10">دهم</option>
+                            <option value="11">یازدهم</option>
+                            <option value="12">دوازدهم</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="festivalType">نوع جشنواره</label>
+                        <select id="festivalType" class="form-control" required>
+                            <option value="">-- انتخاب کنید --</option>
+                            <option value="1">جشنواره پژوهش‌های دانش‌آموزی</option>
+                            <option value="2" disabled>مسابقات رباتیک دانش‌آموزی (ثبت نام به زودی)</option>
+                            <option value="3">جشنواره هنرهای علمی</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectTitle">عنوان پروژه/اثر</label>
+                    <input type="text" id="projectTitle" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectDesc">توضیحات پروژه (حداکثر 300 کلمه)</label>
+                    <textarea id="projectDesc" class="form-control" rows="5" maxlength="1500" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>آیا پروژه گروهی است؟</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="isGroup" value="yes" style="margin-left: 5px;"> بله
+                        </label>
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="isGroup" value="no" checked style="margin-left: 5px;"> خیر
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group" id="teamMembersGroup" style="display: none;">
+                    <label>اعضای تیم (حداکثر 3 نفر)</label>
+                    <div id="teamMembersContainer" style="margin-top: 0.5rem;">
+                        <input type="text" class="form-control" placeholder="نام کامل عضو تیم" style="margin-bottom: 0.5rem;">
+                    </div>
+                    <button type="button" id="addMemberBtn" class="btn-outline" style="margin-top: 0.5rem;">
+                        <i class="fas fa-plus"></i> افزودن عضو
+                    </button>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; margin-top: 1rem;">
+                    <i class="fas fa-paper-plane"></i> ارسال فرم ثبت نام
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="festivalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">جزئیات جشنواره</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="darbarema.html">درباره پژوهش سرا</a>
+            <a href="darbarema.html">قوانین جشنواره‌ها</a>
+            <a href="darbarema.html">تماس با ما</a>
+            <a href="darbarema.html">سوالات متداول</a>
+        </div>
+        
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        
+        <p>پژوهش سرای دانش آموزی جابر ابن حیان بروجرد</p>
+        <p>آدرس: بروجرد، بلوار شهید بهشتی، جنب اداره آموزش و پرورش</p>
+        <p>تلفن: ۰۶۶-۳۲۲۲۱۱۱۱</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Countdown timer
+            function updateCountdown() {
+                const now = new Date();
+                const nextFestival = new Date(now.getFullYear(), now.getMonth() + 1, 15);
+                const diff = nextFestival - now;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+            
+            // Festival details modal
+            const festivalModal = document.getElementById('festivalModal');
+            const viewButtons = document.querySelectorAll('.view-details');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const festivalId = this.getAttribute('data-festival');
+                    showFestivalDetails(festivalId);
+                });
+            });
+            
+            function showFestivalDetails(id) {
+                let title, content;
+                
+                switch(id) {
+                    case '1':
+                        title = "جشنواره پژوهش‌های دانش‌آموزی";
+                        content = `
+                            <h4>شرایط شرکت:</h4>
+                            <ul>
+                                <li>شرکت برای تمام دانش‌آموزان مقاطع متوسطه اول و دوم آزاد است</li>
+                                <li>پروژه‌ها می‌توانند به صورت انفرادی یا گروهی (حداکثر 3 نفر) ارائه شوند</li>
+                                <li>حداقل 70% کار پژوهشی باید توسط دانش‌آموز انجام شده باشد</li>
+                                <li>پروژه‌ها باید دارای خلاقیت و نوآوری باشند</li>
+                            </ul>
+                            
+                            <h4>زمان‌بندی:</h4>
+                            <ul>
+                                <li>مهلت ثبت نام: تا 10 آذر ۱۴۰۲</li>
+                                <li>ارسال مستندات: تا 12 آذر ۱۴۰۲</li>
+                                <li>برگزاری جشنواره: 15 آذر ۱۴۰۲</li>
+                                <li>اعلام نتایج: 17 آذر ۱۴۰۲</li>
+                            </ul>
+                            
+                            <h4>جوایز:</h4>
+                            <ul>
+                                <li>جایزه نقدی به مبلغ 10 میلیون تومان برای طرح برتر</li>
+                                <li>اعطای بورسیه تحصیلی به برگزیدگان</li>
+                                <li>تقدیرنامه و تندیس جشنواره</li>
+                                <li>حمایت از طرح‌های برتر برای شرکت در جشنواره‌های ملی</li>
+                            </ul>
+                            
+                            <h4>محورهای جشنواره:</h4>
+                            <ol>
+                                <li>علوم پایه (فیزیک، شیمی، زیست‌شناسی)</li>
+                                <li>فنی و مهندسی (رباتیک، هوش مصنوعی، اینترنت اشیا)</li>
+                                <li>علوم انسانی (روانشناسی، مدیریت، اقتصاد)</li>
+                                <li>علوم پزشکی و سلامت</li>
+                                <li>محیط زیست و توسعه پایدار</li>
+                                <li>هنر و علوم ارتباطات</li>
+                            </ol>
+                        `;
+                        break;
+                    case '2':
+                        title = "مسابقات رباتیک دانش‌آموزی";
+                        content = `
+                            <h4>شرایط شرکت:</h4>
+                            <ul>
+                                <li>شرکت برای دانش‌آموزان پایه هفتم تا دوازدهم آزاد است</li>
+                                <li>ربات‌ها باید توسط خود دانش‌آموزان طراحی و ساخته شده باشد</li>
+                                <li>هر تیم می‌تواند حداکثر با 3 عضو شرکت کند</li>
+                                <li>استفاده از کیت‌های آماده محدودیت دارد</li>
+                            </ul>
+                            
+                            <h4>بخش‌های مسابقه:</h4>
+                            <ul>
+                                <li>ربات‌های جنگجو (وزن حداکثر 3 کیلوگرم)</li>
+                                <li>ربات‌های مسیریاب (حل ماز در کمترین زمان)</li>
+                                <li>ربات‌های امدادگر (شناسایی و نجات مصدوم)</li>
+                                <li>ربات‌های خلاقانه (ارائه ایده‌های نوآورانه)</li>
+                            </ul>
+                            
+                            <h4>جوایز:</h4>
+                            <ul>
+                                <li>جایزه نقدی به مبلغ 15 میلیون تومان برای تیم برتر</li>
+                                <li>اعطای بورسیه آموزشی رباتیک</li>
+                                <li>تقدیرنامه و مدال جشنواره</li>
+                                <li>حمایت از تیم‌های برتر برای شرکت در مسابقات ملی</li>
+                            </ul>
+                        `;
+                        break;
+                    case '3':
+                        title = "جشنواره هنرهای علمی";
+                        content = `
+                            <h4>شرایط شرکت:</h4>
+                            <ul>
+                                <li>شرکت برای تمام دانش‌آموزان مقاطع مختلف آزاد است</li>
+                                <li>آثار باید ارتباط واضحی با مفاهیم علمی داشته باشند</li>
+                                <li>هر شرکت کننده می‌تواند حداکثر 3 اثر ارائه دهد</li>
+                                <li>آثار باید اصیل و حاصل خلاقیت دانش‌آموز باشد</li>
+                            </ul>
+                            
+                            <h4>بخش‌های جشنواره:</h4>
+                            <ul>
+                                <li>عکاسی علمی (ماکرو، میکروسکوپی، نجومی)</li>
+                                <li>نقاشی و تصویرسازی علمی</li>
+                                <li>مجسمه‌سازی و حجم‌سازی علمی</li>
+                                <li>انیمیشن و فیلم کوتاه علمی</li>
+                                <li>طراحی دیجیتال و گرافیک علمی</li>
+                            </ul>
+                            
+                            <h4>جوایز:</h4>
+                            <ul>
+                                <li>جایزه نقدی به مبلغ 8 میلیون تومان برای اثر برتر</li>
+                                <li>بورسیه آموزشی هنرهای علمی</li>
+                                <li>تقدیرنامه و تندیس جشنواره</li>
+                                <li>نمایش آثار برتر در گالری دائمی پژوهش سرا</li>
+                            </ul>
+                        `;
+                        break;
+                }
+                
+                document.querySelector('#festivalModal .modal-title').textContent = title;
+                document.getElementById('modalBody').innerHTML = content;
+                festivalModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                festivalModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === festivalModal) {
+                    festivalModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Team members toggle
+            const groupRadios = document.querySelectorAll('input[name="isGroup"]');
+            const teamMembersGroup = document.getElementById('teamMembersGroup');
+            
+            groupRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    teamMembersGroup.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+            
+            // Add team member
+            let memberCount = 1;
+            document.getElementById('addMemberBtn').addEventListener('click', function() {
+                if (memberCount < 3) {
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'form-control';
+                    input.placeholder = 'نام کامل عضو تیم';
+                    input.style.marginBottom = '0.5rem';
+                    input.required = true;
+                    
+                    document.getElementById('teamMembersContainer').appendChild(input);
+                    memberCount++;
+                    
+                    if (memberCount === 3) {
+                        this.disabled = true;
+                    }
+                }
+            });
+            
+            // Form submission
+            document.getElementById('festivalForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                alert('ثبت نام شما با موفقیت انجام شد. کد پیگیری: ' + Math.floor(100000 + Math.random() * 900000));
+                
+                // Reset form
+                this.reset();
+                teamMembersGroup.style.display = 'none';
+                memberCount = 1;
+                document.getElementById('teamMembersContainer').innerHTML = 
+                    '<input type="text" class="form-control" placeholder="نام کامل عضو تیم" style="margin-bottom: 0.5rem;">';
+                document.getElementById('addMemberBtn').disabled = false;
+                
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Gallery item click
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const caption = this.querySelector('.gallery-caption').textContent;
+                    
+                    const modalContent = `
+                        <div class="modal-header">
+                            <h3 class="modal-title">${caption}</h3>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            <img src="${imgSrc}" style="max-width: 100%; max-height: 70vh; border-radius: 8px;">
+                        </div>
+                    `;
+                    
+                    const modal = document.createElement('div');
+                    modal.className = 'modal';
+                    modal.style.display = 'flex';
+                    
+                    const content = document.createElement('div');
+                    content.className = 'modal-content';
+                    content.innerHTML = modalContent;
+                    
+                    modal.appendChild(content);
+                    document.body.appendChild(modal);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Close modal
+                    content.querySelector('.close-modal').addEventListener('click', function() {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        setTimeout(() => modal.remove(), 300);
+                    });
+                    
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                            setTimeout(() => modal.remove(), 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

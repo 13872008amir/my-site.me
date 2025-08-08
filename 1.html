@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقالات تخصصی |  پژوهش سرای جاابر ابن حیان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --gold-color: #ffd700;
+            --secondary-color: #f1faee;
+            --accent-color: #a8dadc;
+            --dark-color: #1d3557;
+            --light-color: #f8f9fa;
+            
+        }
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header with Gradient Animation */
+        .article-header {
+            height: 60vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .header-content {
+            z-index: 1;
+            animation: fadeInUp 1s;
+        }
+        
+        .article-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Search Box */
+        .search-box {
+            max-width: 600px;
+            margin: -30px auto 50px;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .search-box button {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+        }
+        
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+            padding: 0 20px;
+        }
+        
+        .category-btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        /* Articles Grid */
+        .articles-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .article-card:nth-child(1) { animation-delay: 0.1s; }
+        .article-card:nth-child(2) { animation-delay: 0.2s; }
+        .article-card:nth-child(3) { animation-delay: 0.3s; }
+        .article-card:nth-child(4) { animation-delay: 0.4s; }
+        .article-card:nth-child(5) { animation-delay: 0.5s; }
+        .article-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .article-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .article-card:hover .article-image img {
+            transform: scale(1.1);
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .article-category {
+            background: #f8f9fa;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .article-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-excerpt {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .read-more:hover {
+            color: #0056b3;
+            transform: translateX(5px);
+        }
+        
+        .read-more i {
+            margin-right: 5px;
+        }
+        
+        /* Featured Article */
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s 0.7s forwards;
+        }
+        
+        .featured-article:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .featured-image {
+            height: 100%;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .featured-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .featured-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .featured-excerpt {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 80px;
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .newsletter h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background: #ff5252;
+        }
+        
+        /* Animations */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .article-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .article-header p {
+                font-size: 1rem;
+            }
+            
+            .articles-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter {
+                clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
+                padding: 60px 20px;
+            }
+        }
+         /* Reset & Base Styles */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Header with Particles */
+        .submit-header {
+            height: 50vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .header-content {
+            z-index: 2;
+            animation: fadeInUp 1s;
+        }
+        
+        .submit-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .submit-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Particles Animation */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Submit Form Container */
+        .submit-container {
+            max-width: 1000px;
+            margin: -50px auto 50px;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s;
+        }
+        
+        /* Form Steps */
+        .form-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e9ecef;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: all 0.5s;
+        }
+        
+        .step.active {
+            background: #007bff;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+        
+        .step.completed {
+            background: #28a745;
+            color: white;
+        }
+        
+        .step-line {
+            height: 4px;
+            background: #e9ecef;
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            right: 50px;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .step-progress {
+            height: 100%;
+            background: #28a745;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        /* Form Sections */
+        .form-section {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s;
+        }
+        
+        .form-section.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .form-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #343a40;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .form-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+        
+        /* File Upload */
+        .file-upload {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file-upload:hover {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+        }
+        
+        .file-upload i {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover i {
+            color: #007bff;
+            transform: translateY(-5px);
+        }
+        
+        .file-upload input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        /* Rich Text Editor */
+        .editor-container {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        
+        .ql-toolbar {
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-bottom: none !important;
+        }
+        
+        .ql-container {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1rem;
+        }
+        
+        /* Keywords Input */
+        .keywords-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .keyword {
+            background: #e9ecef;
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .keyword-remove {
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .keyword-remove:hover {
+            color: #dc3545;
+            transform: scale(1.2);
+        }
+        
+        /* Form Navigation */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-prev {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .btn-prev:hover {
+            background: #dee2e6;
+        }
+        
+        .btn-next {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-next:hover {
+            background: #0069d9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+        
+        .btn-submit {
+            background: #28a745;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn-submit:hover {
+            background: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        /* Preview Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            transform: translateY(-50px);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: #dc3545;
+            transform: rotate(90deg);
+        }
+        .win-group-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--gold-color));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+        
+        .win-group-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: none;
+        }
+        
+        .win-group-btn:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+        
+        .win-group-btn:hover:before {
+            left: 100%;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(230, 57, 70, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(40, 167, 69, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .submit-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .submit-header p {
+                font-size: 1rem;
+            }
+            
+            .submit-container {
+                margin-top: -30px;
+            }
+            
+            .form-section {
+                padding: 25px;
+            }
+            
+            .step {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+            
+            .step-line {
+                left: 40px;
+                right: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Gradient Animation -->
+    <header class="article-header">
+        <div class="header-content">
+            <h1>مقالات تخصصی</h1>
+            <p>بهترین مقالات و مطالب آموزشی در زمینه تکنولوژی، طراحی و توسعه وب در اینجا جمع‌آوری شده‌اند</p>
+        </div>
+    </header>
+    
+    <!-- Search Box -->
+    <div class="search-box">
+        <input type="text" placeholder="جستجو در مقالات...">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+    
+   
+    
+    <!-- Articles Grid -->
+    <div class="articles-container">
+        <!-- Featured Article -->
+        <article class="featured-article">
+            <div class="featured-image">
+                <img src="fvacw0032.png" alt="مقاله ویژه">
+            </div>
+            <div class="featured-content">
+                <span class="featured-badge">مقاله ویژه</span>
+                <h2 class="featured-title">سلول های بنیادی</h2>
+                <p class="featured-excerpt">تاثیر سلول های بر پوست</p>
+                <a href="یدالهی.pdf" download class="read-more">دانلود<i class="fas fa-file-download"></i></a>
+            </div>
+        </article>
+        
+        <!-- Regular Articles -->
+        <article class="article-card">
+            <div class="article-image">
+                <img src="fvacw0032.png" alt="مقاله ۱">
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <span>۲۵ مرداد ۱۴۰۳</span>
+                    <span class="article-category">انبساط گرما</span>
+                </div>
+                <h3 class="article-title">اطلاعات و مقاله انبساط گرمایی</h3>
+                <p class="article-excerpt">در این مقاله به اطلاعاتی درباره انبساط گرمایی دست پیدا میکنیم</p>
+                <a href="انبساط گرمایی.pdf" download class="read-more">دانلود<i class="fas fa-file-download"></i></a>
+            </div>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-image">
+                <img src="fvacw0032.png" alt="مقاله ۲">
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <span>۲۰ مرداد ۱۴۰۳</span>
+                    <span class="article-category">مقالات</span>
+                </div>
+                <h3 class="article-title">علمی پژوهشی</h3>
+                <p class="article-excerpt">در این مقاله به مسائل علمی پژوهشی میپردازیم</p>
+                <a href="72813915701.pdf" download class="read-more">دانلود<i class="fas fa-file-download"></i></a>
+            </div>
+        </article>
+        
+        <article class="article-card">
+            <div class="article-image">
+                <img src="fvacw0032.png" alt="مقاله ۳">
+            </div>
+            <div class="article-content">
+                <div class="article-meta">
+                    <span>۱۵ مرداد ۱۴۰۳</span>
+                    <span class="article-category">داروهای ضد سرطان</span>
+                </div>
+                <h3 class="article-title">دانلود این مقاله درباره سنتز مزوپور</h3>
+                <p class="article-excerpt">سنتز مزوپور روش حامل داروهای ضد سرطان</p>
+                <a href="48788807793999.pdf" download class="read-more">دانلود<i class="fas fa-file-download"></i></a>
+            </div>
+        </article>
+        
+    </div>
+    
+    <!-- Pagination -->
+   
+    
+    <!-- Newsletter -->
+    <div style="text-align: center;">
+        <button class="win-group-btn" style="margin-bottom: 20px;">WIN GROUP طراحی سایت توسط</button>
+    </div>
+    <!-- Header with Particles -->
+    <header class="submit-header">
+        <div id="particles-js"></div>
+      
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+        
+        // Initialize Quill Editor
+        const quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: 'متن مقاله خود را اینجا بنویسید...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['link', 'image', 'video'],
+                    ['clean']
+                ]
+            }
+        });
+        
+        // Form Navigation
+        let currentStep = 1;
+        const totalSteps = 3;
+        
+        function nextStep(step) {
+            if (step === 1 && !validateStep1()) return;
+            if (step === 2 && !validateStep2()) return;
+            
+            document.getElementById(`section${step}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('completed');
+            
+            const nextStep = step + 1;
+            document.getElementById(`section${nextStep}`).classList.add('active');
+            document.getElementById(`step${nextStep}`).classList.add('active');
+            
+            // Update progress line
+            const progress = ((nextStep - 1) / (totalSteps - 1)) * 100;
+            document.querySelector('.step-progress').style.width = `${progress}%`;
+            
+            currentStep = nextStep;
+        }
+        
+        function prevStep(step) {
+            document.getElementById(`section${step}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.remove('active');
+            
+            const prevStep = step - 1;
+            document.getElementById(`section${prevStep}`).classList.add('active');
+            document.getElementById(`step${prevStep}`).classList.add('active');
+            document.getElementById(`step${prevStep}`).classList.remove('completed');
+            
+            // Update progress line
+            const progress = ((prevStep - 1) / (totalSteps - 1)) * 100;
+            document.querySelector('.step-progress').style.width = `${progress}%`;
+            
+            currentStep = prevStep;
+        }
+        
+        // Step Validations
+        function validateStep1() {
+            const title = document.getElementById('article-title').value;
+            const category = document.getElementById('article-category').value;
+            const abstract = document.getElementById('article-abstract').value;
+            
+            if (!title || !category || !abstract) {
+                alert('لطفا تمام فیلدهای обязаاری را پر کنید');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        function validateStep2() {
+            const content = quill.root.innerHTML;
+            
+            if (content === '<p><br></p>' || content === '') {
+                alert('لطفا محتوای مقاله را وارد کنید');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Keywords Functionality
+        const keywordInput = document.getElementById('keyword-input');
+        const keywordsContainer = document.getElementById('keywords-container');
+        const keywords = [];
+        
+        keywordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && keywordInput.value.trim()) {
+                const keyword = keywordInput.value.trim();
+                if (!keywords.includes(keyword)) {
+                    keywords.push(keyword);
+                    renderKeywords();
+                }
+                keywordInput.value = '';
+                e.preventDefault();
+            }
+        });
+        
+        function renderKeywords() {
+            keywordsContainer.innerHTML = '';
+            keywords.forEach((keyword, index) => {
+                const keywordElement = document.createElement('div');
+                keywordElement.className = 'keyword';
+                keywordElement.innerHTML = `
+                    ${keyword}
+                    <span class="keyword-remove" onclick="removeKeyword(${index})">
+                        <i class="fas fa-times"></i>
+                    </span>
+                `;
+                keywordsContainer.appendChild(keywordElement);
+            });
+        }
+        
+        function removeKeyword(index) {
+            keywords.splice(index, 1);
+            renderKeywords();
+        }
+        
+        // File Upload Preview
+        const fileUpload = document.getElementById('file-upload');
+        const fileList = document.getElementById('file-list');
+        const files = [];
+        
+        fileUpload.addEventListener('change', () => {
+            for (let i = 0; i < fileUpload.files.length; i++) {
+                files.push(fileUpload.files[i]);
+            }
+            renderFileList();
+        });
+        
+        function renderFileList() {
+            fileList.innerHTML = '';
+            if (files.length === 0) return;
+            
+            const list = document.createElement('ul');
+            list.style.listStyle = 'none';
+            list.style.marginTop = '15px';
+            
+            files.forEach((file, index) => {
+                const listItem = document.createElement('li');
+                listItem.style.display = 'flex';
+                listItem.style.alignItems = 'center';
+                listItem.style.gap = '10px';
+                listItem.style.marginBottom = '8px';
+                
+                listItem.innerHTML = `
+                    <i class="fas fa-file" style="color: #6c757d;"></i>
+                    <span>${file.name}</span>
+                    <span style="font-size: 0.8rem; color: #6c757d;">(${(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                    <span style="margin-right: auto; cursor: pointer; color: #dc3545;" onclick="removeFile(${index})">
+                        <i class="fas fa-trash"></i>
+                    </span>
+                `;
+                
+                list.appendChild(listItem);
+            });
+            
+            fileList.appendChild(list);
+        }
+        
+        function removeFile(index) {
+            files.splice(index, 1);
+            renderFileList();
+        }
+        
+        // Preview Modal
+        function showPreview() {
+            if (!validateStep3()) return;
+            
+            const previewContent = document.getElementById('preview-content');
+            previewContent.innerHTML = `
+                <h3>${document.getElementById('article-title').value}</h3>
+                <p><strong>نویسنده:</strong> ${document.getElementById('author-name').value}</p>
+                <p><strong>چکیده:</strong> ${document.getElementById('article-abstract').value}</p>
+                <hr>
+                <div class="article-content">${quill.root.innerHTML}</div>
+                <hr>
+                <p><strong>کلمات کلیدی:</strong> ${keywords.join(', ')}</p>
+            `;
+            
+            document.getElementById('previewModal').classList.add('active');
+        }
+        
+        function closePreview() {
+            document.getElementById('previewModal').classList.remove('active');
+        }
+        
+        function validateStep3() {
+            const name = document.getElementById('author-name').value;
+            const email = document.getElementById('author-email').value;
+            
+            if (!name || !email) {
+                alert('لطفا نام و ایمیل خود را وارد کنید');
+                return false;
+            }
+            
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                alert('لطفا یک ایمیل معتبر وارد کنید');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // Submit Article
+        function submitArticle() {
+            // In a real app, you would send data to server here
+            alert('مقاله با موفقیت ارسال شد! پس از بررسی، نتیجه را اعلام خواهیم کرد.');
+            closePreview();
+            
+            // Reset form
+            document.getElementById('article-title').value = '';
+            document.getElementById('article-category').value = '';
+            document.getElementById('article-abstract').value = '';
+            quill.root.innerHTML = '';
+            keywords.length = 0;
+            renderKeywords();
+            files.length = 0;
+            renderFileList();
+            document.getElementById('author-name').value = '';
+            document.getElementById('author-email').value = '';
+            document.getElementById('author-bio').value = '';
+            document.getElementById('author-org').value = '';
+            
+            // Reset steps
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('section1').classList.add('active');
+            
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index === 0) step.classList.add('active');
+            });
+            
+            document.querySelector('.step-progress').style.width = '0%';
+            currentStep = 1;
+        }
+    </script>
+    <script>
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Here you would filter articles based on category
+                // For demo, we'll just animate the articles
+                document.querySelectorAll('.article-card').forEach((card, index) => {
+                    card.style.animation = `fadeInUp 0.8s ${index * 0.1}s forwards`;
+                });
+            });
+        });
+        
+        // Search Functionality
+        const searchInput = document.querySelector('.search-box input');
+        
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                // Here you would implement search functionality
+                alert(`جستجو برای: ${searchInput.value}`);
+            }
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.article-card, .featured-article');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animation = `fadeInUp 0.8s forwards`;
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+    <script>
+         // Animation for all buttons on hover
+         const buttons = document.querySelectorAll('.btn, .win-group-btn, .social-links a, .footer-social a, .gallery-overlay i');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'scale(1.1)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پژوهش‌سرای دانش‌آموزی بروجرد | اخبار و رویدادها</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0d47a1;
+            --accent: #ff6d00;
+            --light: #f5f9ff;
+            --dark: #1e3a8a;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f4ff;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            margin: 20px auto;
+            max-width: 1400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide-content {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 70%;
+            backdrop-filter: blur(5px);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .slide h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        .slide p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 109, 0, 0.4);
+        }
+        
+        /* News Section */
+        .news-section {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 15px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            right: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        .categories {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .category {
+            background: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        
+        .category.active, .category:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-img {
+            height: 220px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .news-date {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .news-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark), var(--secondary));
+            color: white;
+            padding: 50px 5% 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-slider {
+                height: 400px;
+            }
+            
+            .slide-content {
+                max-width: 90%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 350px;
+            }
+            
+            .slide h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .categories {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-slider {
+                height: 300px;
+            }
+            
+            .slide-content {
+                padding: 15px;
+            }
+            
+            .slide h2 {
+                font-size: 1.5rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="2222.png" alt="پژوهش‌سرای بروجرد">
+                <div class="logo-text">
+                    <h1>پژوهش‌سرای دانش‌آموزی بروجرد</h1>
+                    <p>پرورش خلاقیت، نوآوری و پژوهش</p>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('send-maghale.jpeg');">
+            <div class="slide-content">
+                <h2>جشنواره پژوهش‌های دانش‌آموزی</h2>
+                <p>شرکت در پنجمین دوره جشنواره ملی پژوهش‌های دانش‌آموزی با حضور برترین‌های کشور</p>
+                <a href="#" class="btn">اطلاعات بیشتر</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('word-image-2243324.webp');">
+            <div class="slide-content">
+                <h2>کارگاه رباتیک پیشرفته</h2>
+                <p>ثبت نام کارگاه تابستانی رباتیک برای دانش‌آموزان دوره متوسطه</p>
+                <a href="#" class="btn">ثبت نام</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('1396121610293930613543264.jpg');">
+            <div class="slide-content">
+                <h2>افتتاح آزمایشگاه نانو</h2>
+                <p>اولین آزمایشگاه فناوری نانو دانش‌آموزی در استان لرستان افتتاح شد</p>
+                <a href="#" class="btn">گزارش تصویری</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="section-header">
+            <h2>آخرین اخبار</h2>
+            <div class="categories">
+                <div class="category active">همه اخبار</div>
+                <div class="category">رویدادها</div>
+                <div class="category">مسابقات</div>
+                <div class="category">کارگاه‌ها</div>
+                <div class="category">دستاوردها</div>
+            </div>
+        </div>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۲۴ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>کسب ۳ مدال طلا در المپیاد نانو</h3>
+                    <p>دانش‌آموزان پژوهش‌سرای بروجرد در دهمین المپیاد نانو ۳ مدال طلا کسب کردند</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> مدیریت پژوهش‌سرا</span>
+                        <span><i class="fas fa-eye"></i> ۲۴۵ بازدید</span>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۲۴ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>کسب ۳ مدال طلا در المپیاد نانو</h3>
+                    <p>دانش‌آموزان پژوهش‌سرای بروجرد در دهمین المپیاد نانو ۳ مدال طلا کسب کردند</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> مدیریت پژوهش‌سرا</span>
+                        <span><i class="fas fa-eye"></i> ۲۴۵ بازدید</span>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۲۴ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>کسب ۳ مدال طلا در المپیاد نانو</h3>
+                    <p>دانش‌آموزان پژوهش‌سرای بروجرد در دهمین المپیاد نانو ۳ مدال طلا کسب کردند</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> مدیریت پژوهش‌سرا</span>
+                        <span><i class="fas fa-eye"></i> ۲۴۵ بازدید</span>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۲۴ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>کسب ۳ مدال طلا در المپیاد نانو</h3>
+                    <p>دانش‌آموزان پژوهش‌سرای بروجرد در دهمین المپیاد نانو ۳ مدال طلا کسب کردند</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> مدیریت پژوهش‌سرا</span>
+                        <span><i class="fas fa-eye"></i> ۲۴۵ بازدید</span>
+                    </div>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۱۸ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>برگزاری سمینار زیست‌فناوری</h3>
+                    <p>سمینار تخصصی زیست‌فناوری با حضور اساتید دانشگاه تهران در پژوهش‌سرا برگزار شد</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> دپارتمان زیست</span>
+                        <span><i class="fas fa-eye"></i> ۱۸۷ بازدید</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="news-date">۱۲ خرداد ۱۴۰۳</div>
+                </div>
+                <div class="news-content">
+                    <h3>اعزام تیم به مسابقات جهانی ربوکاپ</h3>
+                    <p>تیم رباتیک پژوهش‌سرا برای شرکت در مسابقات جهانی ربوکاپ در آلمان اعزام شد</p>
+                    <div class="news-meta">
+                        <span><i class="fas fa-user"></i> بخش رباتیک</span>
+                        <span><i class="fas fa-eye"></i> ۳۲۱ بازدید</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>درباره پژوهش‌سرا</h3>
+                <p>پژوهش‌سرای دانش‌آموزی بروجرد با هدف پرورش استعدادهای دانش‌آموزان و هدایت پژوهش‌های دانش‌آموزی در سال ۱۳۸۵ تأسیس شده است.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>تماس با ما</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>بروجرد، بلوار شهید بهشتی، پژوهش‌سرای دانش‌آموزی</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>۰۶۶-۳۲۲۵۴۱۷۸</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@ps-borujerd.ir</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>لینک‌های مفید</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 12px;"><a href="vrod.html" style="color: #ddd; text-decoration: none;">سامانه ثبت نام</a></li>
+                    <li style="margin-bottom: 12px;"><a href="galery.html" style="color: #ddd; text-decoration: none;">آلبوم تصاویر</a></li>
+                    <li style="margin-bottom: 12px;"><a href="gozaresh-3mahe.html" style="color: #ddd; text-decoration: none;">طرح‌های پژوهشی</a></li>
+                    <li style="margin-bottom: 12px;"><a href="darbarema.html" style="color: #ddd; text-decoration: none;">دستورالعمل‌ها</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 1404 کلیه حقوق برای پژوهش‌سرای دانش‌آموزی بروجرد محفوظ است.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Slider Functionality
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Auto slide change every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Category Filtering
+        const categories = document.querySelectorAll('.category');
+        
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                categories.forEach(cat => cat.classList.remove('active'));
+                category.classList.add('active');
+                // In a real site, this would filter news items
+                document.querySelector('.section-header h2').textContent = `اخبار ${category.textContent}`;
+            });
+        });
+        
+        // Animation on scroll
+        const newsCards = document.querySelectorAll('.news-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        newsCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        // Add hover effect to cards
+        newsCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.querySelector('.news-img').style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('.news-img').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

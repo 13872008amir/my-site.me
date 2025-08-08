@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پژوهش سرای دانش آموزی بروجرد - دانش آموزان برتر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/iraniansans.css">
+    <style>
+        /* Variables */
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #2ecc71;
+            --text: #333;
+            --text-light: #7f8c8d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Iranian Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: var(--transition);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,100 0,100" fill="rgba(255,255,255,0.1)" /></svg>');
+            background-size: 100% 100%;
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .sections-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .section.animated {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .section-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .students-container {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .student-card {
+            background: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            transform: scale(0.95);
+            opacity: 0;
+        }
+
+        .student-card.animated {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .student-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .student-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .student-card:hover .student-image img {
+            transform: scale(1.05);
+        }
+
+        .student-rank {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: gold;
+            color: #333;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .student-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .student-info h4 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .student-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .achievements {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .achievement {
+            background: var(--primary);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .achievement.accent {
+            background: var(--accent);
+        }
+
+        .achievement.success {
+            background: var(--success);
+        }
+
+        /* Statistics */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 0;
+            gap: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            padding: 25px 20px;
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 50px 0 20px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .sections-container {
+                flex-direction: column;
+            }
+            
+            .students-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
+            
+            nav.active {
+                max-height: 500px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-box {
+                min-width: 150px;
+                padding: 20px 15px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.8rem;
+            }
+            
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .section-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .student-info h4 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap fa-2x"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>پژوهش سرای دانش آموزی بروجرد</h1>
+                        <p>پرورش استعدادها، ساختن آینده</p>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="#" class="active">دانش آموزان برتر</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>دانش آموزان فعال و برتر پژوهش سرا</h2>
+            <p>در این صفحه با دانش آموزان فعال و برتر پژوهش سرای دانش آموزی بروجرد آشنا شوید. افتخار ما پرورش استعدادهای درخشان شهرمان است.</p>
+            <div class="hero-btns">
+                <a href="vrod.html" class="btn btn-primary">ثبت نام در پژوهش سرا</a>
+                <a href="darbarema.html" class="btn btn-outline">درباره ما</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <div class="container">
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="studentsCount">0</div>
+                <div class="stat-text">دانش آموز فعال</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="projectsCount">0</div>
+                <div class="stat-text">پروژه موفق</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="awardsCount">0</div>
+                <div class="stat-text">جایزه کسب شده</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="yearsCount">0</div>
+                <div class="stat-text">سال تجربه</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="section-title">
+            <h2>دانش آموزان ممتاز پژوهش سرا</h2>
+        </div>
+        
+        <div class="sections-container">
+            <!-- Active Students Section -->
+            <section class="section" id="activeSection">
+                <div class="section-header">
+                    <h3><i class="fas fa-rocket"></i> دانش آموزان فعال</h3>
+                    <p>فعالان عرصه پژوهش و نوآوری</p>
+                </div>
+                <div class="students-container">
+                    <!-- Student 1 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="فاطمه محمدی">
+                        </div>
+                        <div class="student-info">
+                            <h4>فاطمه محمدی</h4>
+                            <p>پایه دوازدهم - دبیرستان فرزانگان</p>
+                            <div class="achievements">
+                                <span class="achievement">طرح پژوهشی برتر</span>
+                                <span class="achievement success">کسب مقام استانی</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 2 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="امیرحسین رضایی">
+                        </div>
+                        <div class="student-info">
+                            <h4>امیرحسین رضایی</h4>
+                            <p>پایه یازدهم - دبیرستان شهید بهشتی</p>
+                            <div class="achievements">
+                                <span class="achievement">اختراع ثبت شده</span>
+                                <span class="achievement accent">کسب مدال طلا</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 3 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1376&q=80" alt="زهرا کریمی">
+                        </div>
+                        <div class="student-info">
+                            <h4>زهرا کریمی</h4>
+                            <p>پایه دهم - دبیرستان پروین اعتصامی</p>
+                            <div class="achievements">
+                                <span class="achievement">مقالۀ علمی</span>
+                                <span class="achievement success">کسب مقام کشوری</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 4 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="محمدجواد حسینی">
+                            <div class="student-rank">1</div>
+                        </div>
+                        <div class="student-info">
+                            <h4>محمدجواد حسینی</h4>
+                            <p>پایه نهم - دبیرستان شاهد</p>
+                            <div class="achievements">
+                                <span class="achievement accent">المپیاد ریاضی</span>
+                                <span class="achievement">طرح برتر جشنواره</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Top Students Section -->
+            <section class="section" id="topSection">
+                <div class="section-header">
+                    <h3><i class="fas fa-crown"></i> دانش آموزان برتر</h3>
+                    <p>برگزیدگان مسابقات و جشنواره‌ها</p>
+                </div>
+                <div class="students-container">
+                    <!-- Student 1 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="علی احمدی">
+                            <div class="student-rank">2</div>
+                        </div>
+                        <div class="student-info">
+                            <h4>علی احمدی</h4>
+                            <p>پایه دوازدهم - دبیرستان علامه حلی</p>
+                            <div class="achievements">
+                                <span class="achievement accent">نفر اول کشوری</span>
+                                <span class="achievement">مقالۀ ISI</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 2 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="سپهر قاسمی">
+                            <div class="student-rank">3</div>
+                        </div>
+                        <div class="student-info">
+                            <h4>سپهر قاسمی</h4>
+                            <p>پایه یازدهم - دبیرستان شهید مطهری</p>
+                            <div class="achievements">
+                                <span class="achievement success">مدال طلای جهانی</span>
+                                <span class="achievement">اختراع ثبت شده</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 3 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="نرگس صالحی">
+                        </div>
+                        <div class="student-info">
+                            <h4>نرگس صالحی</h4>
+                            <p>پایه دهم - دبیرستان فرزانگان</p>
+                            <div class="achievements">
+                                <span class="achievement accent">جایزۀ ویژه جشنواره</span>
+                                <span class="achievement">طرح پژوهشی برتر</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Student 4 -->
+                    <div class="student-card">
+                        <div class="student-image">
+                            <img src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="کیانا موسوی">
+                        </div>
+                        <div class="student-info">
+                            <h4>کیانا موسوی</h4>
+                            <p>پایه نهم - دبیرستان شاهد</p>
+                            <div class="achievements">
+                                <span class="achievement success">کسب مقام بین المللی</span>
+                                <span class="achievement accent">نفر اول استانی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>دربارۀ پژوهش سرا</h3>
+                    <p>پژوهش سرای دانش آموزی بروجرد با هدف کشف و پرورش استعدادهای دانش آموزان و هدایت آنان در مسیر پژوهش و نوآوری تأسیس شده است.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>لینک‌های مفید</h3>
+                    <ul>
+                        <li><a href="news.html">اخبار پژوهش سرا</a></li>
+                        <li><a href="fogh-barname.html">برنامه‌های آموزشی</a></li>
+                        <li><a href="rac.html">مسابقات و جشنواره‌ها</a></li>
+                        <li><a href="gozaresh-3mahe.html">طرح‌های پژوهشی</a></li>
+                        <li><a href="galery.html">گالری تصاویر</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تماس با ما</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>بروجرد، خیابان شهید مطهری، پژوهش سرای دانش آموزی</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>066-33221100</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@peshgahesabz.ir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>تمامی حقوق این وبسایت متعلق به پژوهش سرای دانش آموزی بروجرد می‌باشد. © 1404</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+                header.style.padding = '10px 0';
+                scrollTopBtn.classList.add('show');
+            } else {
+                header.style.boxShadow = 'var(--shadow)';
+                header.style.padding = '15px 0';
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        
+        // Scroll to top functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Animated counters for statistics
+        const stats = document.querySelectorAll('.stat-number');
+        const values = [185, 94, 37, 12];
+        const duration = 2000;
+        
+        stats.forEach((stat, index) => {
+            let start = 0;
+            const end = values[index];
+            const increment = end / (duration / 16);
+            
+            const counter = setInterval(() => {
+                start += increment;
+                if (start >= end) {
+                    stat.textContent = end;
+                    clearInterval(counter);
+                } else {
+                    stat.textContent = Math.ceil(start);
+                }
+            }, 16);
+        });
+        
+        // Animation on scroll for sections and cards
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('.section');
+            const cards = document.querySelectorAll('.student-card');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('animated');
+                }
+            });
+            
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (cardTop < windowHeight - 50) {
+                    card.classList.add('animated');
+                }
+            });
+        };
+        
+        // Initialize animations
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Student card interaction
+        const studentCards = document.querySelectorAll('.student-card');
+        studentCards.forEach(card => {
+            card.addEventListener('click', () => {
+                studentCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                // Show a toast notification
+                const name = card.querySelector('h4').textContent;
+                showToast(`نمایش جزئیات ${name}`);
+            });
+        });
+        
+        // Toast notification function
+        function showToast(message) {
+            // Remove existing toast if any
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Show toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Add toast styles dynamically
+        const toastStyle = document.createElement('style');
+        toastStyle.textContent = `
+            .toast {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100px);
+                background-color: var(--secondary);
+                color: white;
+                padding: 12px 25px;
+                border-radius: 30px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                transition: transform 0.4s ease;
+            }
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+            }
+        `;
+        document.head.appendChild(toastStyle);
+    </script>
+</body>
+</html>

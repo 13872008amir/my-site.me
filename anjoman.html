@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>انجمن‌های پژوهش‌سرای دانش‌آموزی بروجرد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --background-color: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.05)" points="0,100 100,0 100,100"/></svg>');
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            margin-left: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            backdrop-filter: blur(5px);
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.6));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: #c0392b;
+        }
+
+        /* Forums Section */
+        .forums-section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+
+        .forums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .forum-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .forum-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .forum-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            z-index: 2;
+        }
+
+        .forum-image {
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .forum-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .forum-card:hover .forum-image img {
+            transform: scale(1.1);
+        }
+
+        .forum-content {
+            padding: 1.5rem;
+        }
+
+        .forum-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .forum-content p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .forum-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .members-count {
+            display: flex;
+            align-items: center;
+        }
+
+        .members-count i {
+            margin-left: 5px;
+            color: var(--secondary-color);
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 2rem 0;
+            background-color: #f0f4f8;
+            margin: 2rem 0;
+        }
+
+        .events-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1rem;
+            padding: 1rem 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .event-card {
+            flex: 0 0 85%;
+            scroll-snap-align: start;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-date {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .event-date .day {
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        .event-date .month {
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .event-details {
+            padding: 1rem;
+        }
+
+        .event-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details .location {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+
+        .event-details .location i {
+            margin-left: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .forums-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin: 0.2rem 0;
+            }
+
+            .hero {
+                height: 250px;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .event-card {
+                flex: 0 0 90%;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo img {
+                margin-left: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .forums-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .forum-card {
+                max-width: 100%;
+            }
+
+            .section-title h2 {
+                font-size: 1.3rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+            }
+
+            .footer-links a {
+                margin: 0.3rem 0;
+            }
+        }
+
+        /* Animation Effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .forum-card, .event-card, .section-title {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .forum-card:nth-child(2), .event-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .forum-card:nth-child(3), .event-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Floating Particles Effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="particles" id="particles"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/60" alt="پژوهش‌سرای دانش‌آموزی بروجرد">
+                    <div class="logo-text">
+                        <h1>پژوهش‌سرای دانش‌آموزی بروجرد</h1>
+                        <p>پرورش خلاقیت و نوآوری در دانش‌آموزان</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>انجمن‌های تخصصی پژوهش‌سرای دانش‌آموزی بروجرد</h2>
+            <p>محلی برای رشد علمی، تبادل نظر و پرورش استعدادهای دانش‌آموزان مستعد</p>
+            <a href="vrod.html" class="btn">عضویت در انجمن‌ها</a>
+        </div>
+    </section>
+
+    <!-- Forums Section -->
+    <section class="forums-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>انجمن‌های فعال</h2>
+            </div>
+            
+            <div class="forums-grid">
+                <!-- Forum Card 1 -->
+                <div class="forum-card">
+                    <div class="forum-image">
+                        <img src="170323961.jpg" alt="انجمن نجوم">
+                    </div>
+                    <div class="forum-content">
+                        <h3>انجمن نجوم و اخترفیزیک</h3>
+                        <p>کشف اسرار کیهان و آشنایی با دنیای نجوم و اخترفیزیک</p>
+                        <div class="forum-meta">
+                            <span>مدیر: دکتر محمدی</span>
+                            <span class="members-count">
+                                <i class="fas fa-users"></i>
+                                85 عضو
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forum Card 2 -->
+                <div class="forum-card">
+                    <div class="forum-image">
+                        <img src="4138853432.jpg" alt="انجمن رباتیک">
+                    </div>
+                    <div class="forum-content">
+                        <h3>انجمن رباتیک و هوش مصنوعی</h3>
+                        <p>طراحی و ساخت ربات‌های پیشرفته و یادگیری مفاهیم هوش مصنوعی</p>
+                        <div class="forum-meta">
+                            <span>مدیر: مهندس حسینی</span>
+                            <span class="members-count">
+                                <i class="fas fa-users"></i>
+                                120 عضو
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Forum Card 3 -->
+                <div class="forum-card">
+                    <div class="forum-image">
+                        <img src="854.jpg" alt="انجمن زیست‌شناسی">
+                    </div>
+                    <div class="forum-content">
+                        <h3>انجمن زیست‌شناسی و ژنتیک</h3>
+                        <p>کشف رازهای حیات و پژوهش در زمینه زیست‌فناوری و ژنتیک</p>
+                        <div class="forum-meta">
+                            <span>مدیر: دکتر رضایی</span>
+                            <span class="members-count">
+                                <i class="fas fa-users"></i>
+                                64 عضو
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>رویدادهای پیش‌رو</h2>
+            </div>
+            
+            <div class="events-slider">
+                <!-- Event Card 1 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">خرداد</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>مسابقه رباتیک دانش‌آموزی</h3>
+                        <p>مسابقه سالانه رباتیک با حضور تیم‌های دانش‌آموزی از سراسر استان</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>سالن اجتماعات پژوهش‌سرا</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 2 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">خرداد</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>کارگاه نجوم عملی</h3>
+                        <p>رصد آسمان شب و آموزش کار با تلسکوپ برای دانش‌آموزان</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>پشت بام پژوهش‌سرا</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 3 -->
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">30</span>
+                        <span class="month">خرداد</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>همایش زیست‌فناوری</h3>
+                        <p>بررسی آخرین دستاوردهای زیست‌فناوری و کاربردهای آن</p>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>سالن کنفرانس مرکزی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>پژوهش‌سرای دانش‌آموزی بروجرد</h3>
+                
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="darbarema.html">درباره ما</a>
+                    <a href="news.html">اخبار</a>
+                    <a href="galery.html">گالری تصاویر</a>
+                    <a href="darbarema.html">تماس با ما</a>
+                    <a href="darbarema.html">قوانین و مقررات</a>
+                </div>
+                
+                <div class="copyright">
+                    © 2024 کلیه حقوق برای پژوهش‌سرای دانش‌آموزی بروجرد محفوظ است.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 3px and 8px
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+    </script>
+</body>
+</html>

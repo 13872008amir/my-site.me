@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسابقات | پژوهش سرای جابر ابن حیان بروجرد</title>
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #64B5F6;
+            --accent-color: #FFC107;
+            --light-color: #E3F2FD;
+            --dark-color: #0D47A1;
+            --text-color: #212121;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+        
+        .competitions-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .competition-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .competition-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .competition-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .competition-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .competition-content {
+            padding: 1.2rem;
+        }
+        
+        .competition-title {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .competition-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .competition-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .competition-meta i {
+            margin-left: 5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .winners-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .winner-list {
+            margin-top: 1.5rem;
+        }
+        
+        .winner-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .winner-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 1rem;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+        
+        .winner-info {
+            flex: 1;
+        }
+        
+        .winner-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .winner-prize {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .competitions-section {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>مسابقات پژوهش سرای جابر ابن حیان بروجرد</h1>
+            <p>فرصتی برای شکوفایی استعدادهای دانش‌آموزان در زمینه‌های علمی و پژوهشی</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section>
+            <h2>مسابقات جاری</h2>
+            <p class="page-description">مسابقات فعالی که هم اکنون می‌توانید در آنها ثبت نام کنید</p>
+            
+            <div class="competitions-section">
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">در حال ثبت نام</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">  زیست فناوری</h3>
+                        <p>مسابقه طراحی و ساخت ربات‌های هوشمند برای دانش‌آموزان متوسطه اول و دوم</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> تا ۱۵ آذر ۱۴۰۲</span>
+                            <span><i>⏰</i> گروهی ۳ نفره</span>
+                        </div>
+                        
+                        <a href="#" download class="btn"> مشاهده جزییات </a>
+                    </div>
+                </div>
+                
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">مرحله اول</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">علوم و فنون هسته ای</h3>
+                        <p>رقابت علمی در زمینه‌های علوم و فنون هسته ای</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> ۲۰ آبان ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">مشاهده جزئیات</a>
+                    </div>
+                </div>
+                
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">مسابقه نانو فناوری</h3>
+                        <p>رقابت در مسائل نانو فناوری</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">گیاهان دارویی</h3>
+                        <p>رقابت ها در زمینه گیاهان دارویی</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">مسابقه علوم تجربی</h3>
+                        <p>رقابت های جذاب در زمینه علوم تجربی</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">مسابقه ادبیات و علوم انسانی</h3>
+                        <p>رقابت ها در زمینه ادبیات و علوم انسانی</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">سلول های بنیادی</h3>
+                        <p>رقابت ها و یادگیری در زمینه سلول های بنیادی</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">مسابقه رباتیک و هوش مصنوعی</h3>
+                        <p>رقابت ها در زمینه جذاب رباتیک و هوش مصنوعی</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">مسابقه برنامه نویسی</h3>
+                        <p>رقابت در حل مسائل الگوریتمی و برنامه‌نویسی برای دانش‌آموزان متوسطه دوم</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">انرژی های نوین</h3>
+                        <p>رقابت ها و کسب اطلاعات در زمینه انرژی های نوین</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">هوا فضا</h3>
+                        <p>رقابت در زمینه هوا فضا</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+                <div class="competition-card">
+                    <div class="competition-image" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');">
+                        <span class="competition-badge">آماده‌سازی</span>
+                    </div>
+                    <div class="competition-content">
+                        <h3 class="competition-title">نجوم</h3>
+                        <p>رقابت در زمینه نجوم</p>
+                        
+                        <div class="competition-meta">
+                            <span><i>📅</i> شروع: ۱ دی ۱۴۰۲</span>
+                            <span><i>⏰</i> انفرادی</span>
+                        </div>
+                        
+                        <a href="#" download class="btn">اطلاعات بیشتر</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="winners-section">
+            <h2>برندگان دوره قبل</h2>
+            <p>معرفی دانش‌آموزان برتر مسابقات گذشته پژوهش سرا</p>
+            
+            <div class="winner-list">
+                <div class="winner-item">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="برنده" class="winner-avatar">
+                    <div class="winner-info">
+                        <div class="winner-name">محمد حسینی</div>
+                        <div>مسابقه رباتیک - ربات مسیریاب هوشمند</div>
+                    </div>
+                    <div class="winner-prize">جایزه اول</div>
+                </div>
+                
+                <div class="winner-item">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="برنده" class="winner-avatar">
+                    <div class="winner-info">
+                        <div class="winner-name">فاطمه محمدی</div>
+                        <div>المپیاد علوم - شیمی</div>
+                    </div>
+                    <div class="winner-prize">جایزه دوم</div>
+                </div>
+                
+                <div class="winner-item">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="برنده" class="winner-avatar">
+                    <div class="winner-info">
+                        <div class="winner-name">علی رضایی</div>
+                        <div>مسابقه برنامه‌نویسی - سطح پیشرفته</div>
+                    </div>
+                    <div class="winner-prize">جایزه سوم</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>پژوهش سرای دانش آموزی جابر ابن حیان بروجرد</p>
+        <p>تلفن: ۰۶۶-۳۲۲۲۱۱۱۱ | آدرس: بروجرد، بلوار شهید بهشتی</p>
+    </footer>
+
+    <script>
+        // کدهای ساده جاوااسکریپت برای تعاملات پایه
+        document.addEventListener('DOMContentLoaded', function() {
+            // نمایش پیام پس از ثبت فرم
+            const form = document.querySelector('form');
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('درخواست ثبت نام شما با موفقیت دریافت شد. به زودی با شما تماس خواهیم گرفت.');
+                    form.reset();
+                });
+            }
+            
+            // اسکرول نرم برای لینک‌ها
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

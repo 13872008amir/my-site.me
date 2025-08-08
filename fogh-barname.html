@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>برنامه کلاس‌های فوق‌برنامه پژوهش‌سرا</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent1: #f59e0b;
+            --accent2: #10b981;
+            --accent3: #ec4899;
+            --neutral-100: #f8fafc;
+            --neutral-800: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background: var(--neutral-100);
+            color: var(--neutral-800);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+            opacity: 0.2;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .class-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .class-tab {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            background: white;
+            color: var(--neutral-800);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .class-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .class-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+        .class-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .class-header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(90deg, var(--class-color), var(--class-color-light));
+            color: white;
+        }
+
+        .class-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+        }
+
+        .class-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .class-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .class-image {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .class-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .class-schedule {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .class-schedule th {
+            background: var(--neutral-100);
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .class-schedule td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid var(--neutral-100);
+        }
+
+        .class-schedule tr:last-child td {
+            border-bottom: none;
+        }
+
+        .time-slot {
+            background: var(--class-color-light);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .class-description {
+            margin-top: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .register-btn {
+            background: var(--class-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 320px) {
+            .class-content {
+                grid-template-columns: 0.5fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>کلاس‌های فوق‌برنامه پژوهش‌سرا</h1>
+        <p>فرصت‌های یادگیری فراتر از برنامه درسی با بهترین اساتید</p>
+    </header>
+
+    <div class="container">
+        <div class="class-tabs">
+            <button class="class-tab active" data-class="robotics">رباتیک پیشرفته</button>
+            <button class="class-tab" data-class="ai">هوش مصنوعی</button>
+            <button class="class-tab" data-class="art">هنر دیجیتال</button>
+            <button class="class-tab" data-class="bio">زیست‌فناوری</button>
+        </div>
+
+        <!-- کلاس رباتیک -->
+        <div class="class-card active" id="robotics" style="--class-color: #3b82f6; --class-color-light: #60a5fa;">
+            <div class="class-header">
+                <h2>رباتیک پیشرفته</h2>
+                <span class="class-badge">گروه علوم مهندسی</span>
+            </div>
+            
+            <div class="class-content">
+                <div class="class-image">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="رباتیک">
+                </div>
+                
+                <div>
+                    <h3>زمان‌بندی کلاس</h3>
+                    <table class="class-schedule">
+                        <thead>
+                            <tr>
+                                <th>روز</th>
+                                <th>ساعت</th>
+                                <th>مدرس</th>
+                                <th>مکان</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>شنبه</td>
+                                <td><span class="time-slot">14:00 - 16:00</span></td>
+                                <td>دکتر احمدی</td>
+                                <td>آزمایشگاه 3</td>
+                            </tr>
+                            <tr>
+                                <td>سه‌شنبه</td>
+                                <td><span class="time-slot">10:00 - 12:00</span></td>
+                                <td>مهندس رضایی</td>
+                                <td>کارگاه رباتیک</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="class-description">
+                        <p>در این دوره دانش‌آموزان با اصول طراحی و برنامه‌نویسی ربات‌های پیشرفته آشنا می‌شوند. این دوره شامل بخش‌های تئوری و عملی با تمرکز بر ربات‌های صنعتی و هوشمند است.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- کلاس طراحی  -->
+        <div class="class-card" id="ai" style="--class-color: #8b5cf6; --class-color-light: #a78bfa;">
+            <div class="class-header">
+                <h2> کلاس طراحی</h2>
+                <span class="class-badge">گروه فناوری اطلاعات</span>
+            </div>
+            
+            <div class="class-content">
+                <div class="class-image">
+                    <img src="https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="هوش مصنوعی">
+                </div>
+                
+                <div>
+                    <h3>زمان‌بندی کلاس</h3>
+                    <table class="class-schedule">
+                        <thead>
+                            <tr>
+                                <th>روز</th>
+                                <th>ساعت</th>
+                                <th>مدرس</th>
+                                <th>مکان</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>یکشنبه</td>
+                                <td><span class="time-slot">16:00 - 18:00</span></td>
+                                <td>دکتر محمدی</td>
+                                <td>سالن کنفرانس</td>
+                            </tr>
+                            <tr>
+                                <td>چهارشنبه</td>
+                                <td><span class="time-slot">14:00 - 16:00</span></td>
+                                <td>مهندس حسینی</td>
+                                <td>آزمایشگاه کامپیوتر</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="class-description">
+                        <p>آشنایی با مفاهیم پایه هوش مصنوعی و یادگیری ماشین. این دوره مناسب دانش‌آموزانی است که می‌خواهند وارد دنیای جذاب هوش مصنوعی شوند و پروژه‌های عملی انجام دهند.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- کلاس  -->
+        <div class="class-card" id="art" style="--class-color: #ec4899; --class-color-light: #f472b6;">
+            <div class="class-header">
+                <h2>هنر دیجیتال و طراحی</h2>
+                <span class="class-badge">گروه هنر و خلاقیت</span>
+            </div>
+            
+            <div class="class-content">
+                <div class="class-image">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="هنر دیجیتال">
+                </div>
+                
+                <div>
+                    <h3>زمان‌بندی کلاس</h3>
+                    <table class="class-schedule">
+                        <thead>
+                            <tr>
+                                <th>روز</th>
+                                <th>ساعت</th>
+                                <th>مدرس</th>
+                                <th>مکان</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>دوشنبه</td>
+                                <td><span class="time-slot">10:00 - 12:00</span></td>
+                                <td>استاد کریمی</td>
+                                <td>آتلیه هنری</td>
+                            </tr>
+                            <tr>
+                                <td>پنجشنبه</td>
+                                <td><span class="time-slot">08:00 - 10:00</span></td>
+                                <td>مهندس نوروزی</td>
+                                <td>آزمایشگاه گرافیک</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="class-description">
+                        <p>کارگاه عملی طراحی دیجیتال و اصول هنرهای تجسمی با نرم‌افزارهای پیشرفته. این دوره برای علاقه‌مندان به طراحی گرافیک، تصویرسازی و انیمیشن مناسب است.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- کلاس زبان  -->
+        <div class="class-card" id="bio" style="--class-color: #10b981; --class-color-light: #34d399;">
+            <div class="class-header">
+                <h2>آموزش زبان </h2>
+                <span class="class-badge">گروه علوم تجربی</span>
+            </div>
+            
+            <div class="class-content">
+                <div class="class-image">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="زیست فناوری">
+                </div>
+                
+                <div>
+                    <h3>زمان‌بندی کلاس</h3>
+                    <table class="class-schedule">
+                        <thead>
+                            <tr>
+                                <th>روز</th>
+                                <th>ساعت</th>
+                                <th>مدرس</th>
+                                <th>مکان</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>شنبه</td>
+                                <td><span class="time-slot">08:00 - 10:00</span></td>
+                                <td>دکتر امینی</td>
+                                <td>آزمایشگاه زیست‌شناسی</td>
+                            </tr>
+                            <tr>
+                                <td>چهارشنبه</td>
+                                <td><span class="time-slot">16:00 - 18:00</span></td>
+                                <td>دکتر فلاح</td>
+                                <td>سالن سمینار</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="class-description">
+                        <p>آشنایی با تکنیک‌های مدرن در زیست‌فناوری شامل مهندسی ژنتیک، کشت سلول و بیوانفورماتیک. این دوره شامل کار عملی در آزمایشگاه‌های مجهز است.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تعویض بین کلاس‌ها
+        const classTabs = document.querySelectorAll('.class-tab');
+        const classCards = document.querySelectorAll('.class-card');
+
+        classTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // حذف کلاس active از تمام تب‌ها
+                classTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const classId = tab.dataset.class;
+                
+                // مخفی کردن تمام کارت‌ها
+                classCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+                
+                // نمایش کارت انتخاب شده
+                document.getElementById(classId).classList.add('active');
+            });
+        });
+
+        // انیمیشن دکمه ثبت‌نام
+        const registerBtns = document.querySelectorAll('.register-btn');
+        
+        registerBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const className = this.closest('.class-card').querySelector('h2').textContent;
+                
+                // شبیه‌سازی ثبت‌نام
+                this.textContent = 'در حال ثبت‌نام...';
+                this.style.opacity = '0.8';
+                
+                setTimeout(() => {
+                    this.textContent = 'ثبت‌نام موفق!';
+                    this.style.background = '#10b981';
+                    
+                    setTimeout(() => {
+                        this.textContent = 'ثبت‌نام در دوره';
+                        this.style.background = '';
+                        this.style.opacity = '1';
+                    }, 2000);
+                }, 1000);
+                
+                alert(`درخواست ثبت‌نام شما برای دوره "${className}" دریافت شد!`);
+            });
+        });
+
+        // افکت اسکرول برای هدر
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const scrollPosition = window.scrollY;
+            
+            if (scrollPosition > 50) {
+                header.style.padding = '1.5rem 2rem';
+            } else {
+                header.style.padding = '3rem 2rem';
+            }
+        });
+    </script>
+</body>
+</html>

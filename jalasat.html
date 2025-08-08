@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلسات | پژوهش سرای جابر ابن حیان بروجرد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        :root {
+            --primary-color: #1976D2;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --light-color: #E3F2FD;
+            --dark-color: #0D47A1;
+            --text-color: #212121;
+            --white: #FFFFFF;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --danger-color: #F44336;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="%23FFFFFF" stroke-width="0.5" stroke-dasharray="5,5" /></svg>');
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 80px;
+            margin-left: 15px;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .tab:hover:not(.active) {
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: var(--white);
+        }
+        
+        .btn-success:hover {
+            background-color: #388E3C;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--white);
+        }
+        
+        .btn-warning:hover {
+            background-color: #F57C00;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: var(--white);
+        }
+        
+        .btn-danger:hover {
+            background-color: #D32F2F;
+        }
+        
+        .meetings-list {
+            list-style: none;
+        }
+        
+        .meeting-item {
+            padding: 1rem;
+            border-bottom: 1px solid #EEE;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .meeting-item:hover {
+            background-color: rgba(25, 118, 210, 0.05);
+        }
+        
+        .meeting-info {
+            flex: 1;
+        }
+        
+        .meeting-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .meeting-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .meeting-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .meeting-meta i {
+            margin-left: 5px;
+        }
+        
+        .meeting-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-primary {
+            background-color: #E3F2FD;
+            color: var(--primary-color);
+        }
+        
+        .badge-success {
+            background-color: #E8F5E9;
+            color: var(--success-color);
+        }
+        
+        .badge-warning {
+            background-color: #FFF8E1;
+            color: var(--warning-color);
+        }
+        
+        .badge-danger {
+            background-color: #FFEBEE;
+            color: var(--danger-color);
+        }
+        
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .calendar-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .mini-calendar {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        
+        .calendar-day-header {
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 5px;
+            color: var(--primary-color);
+        }
+        
+        .calendar-day {
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-day:hover {
+            background-color: #E3F2FD;
+        }
+        
+        .calendar-day.today {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .calendar-day.has-meeting {
+            position: relative;
+        }
+        
+        .calendar-day.has-meeting::after {
+            content: "";
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+        
+        .calendar-day.other-month {
+            color: #AAA;
+        }
+        
+        .meeting-details {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .meeting-details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .meeting-details-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .meeting-details-meta {
+            margin-bottom: 1.5rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item i {
+            margin-left: 8px;
+            color: var(--primary-color);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .meeting-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .attendees-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        .attendee {
+            display: flex;
+            align-items: center;
+            background-color: #E3F2FD;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+        
+        .attendee img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #EEE;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+            
+            .meeting-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .meeting-actions {
+                align-self: flex-end;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/80" alt="پژوهش سرای جابر ابن حیان">
+            <h1>مدیریت جلسات پژوهش سرای جابر ابن حیان بروجرد</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="upcoming">جلسات پیش رو</div>
+            <div class="tab" data-tab="past">جلسات گذشته</div>
+            <div class="tab" data-tab="calendar">تقویم جلسات</div>
+        </div>
+        
+        <div class="tab-content active" id="upcoming">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">جلسات برنامه‌ریزی شده</h2>
+                    <button class="btn btn-primary" id="addMeetingBtn">
+                        <i class="fas fa-plus"></i> جلسه جدید
+                    </button>
+                </div>
+                
+                <ul class="meetings-list">
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">جلسه هماهنگی مسابقات علمی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/09/15</span>
+                                <span><i class="far fa-clock"></i> ۱۰:۰۰ تا ۱۱:۳۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> سالن کنفرانس پژوهش سرا</span>
+                                <span class="badge badge-success">تأیید شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                    
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">بررسی پروژه‌های دانش‌آموزی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/09/18</span>
+                                <span><i class="far fa-clock"></i> ۱۴:۰۰ تا ۱۶:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> اتاق جلسات شماره ۲</span>
+                                <span class="badge badge-warning">در انتظار تأیید</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                    
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">کارگاه آموزشی روش تحقیق</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/09/20</span>
+                                <span><i class="far fa-clock"></i> ۰۸:۳۰ تا ۱۲:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> آزمایشگاه مرکزی</span>
+                                <span class="badge badge-success">تأیید شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                    
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">جلسه با خیرین پژوهش سرا</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/09/25</span>
+                                <span><i class="far fa-clock"></i> ۱۶:۰۰ تا ۱۸:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> سالن VIP</span>
+                                <span class="badge badge-primary">جدید</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="past">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">جلسات برگزار شده</h2>
+                    <div class="btn-group">
+                        <button class="btn btn-primary"><i class="fas fa-filter"></i> فیلتر</button>
+                        <button class="btn btn-primary"><i class="fas fa-download"></i> خروجی</button>
+                    </div>
+                </div>
+                
+                <ul class="meetings-list">
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">جلسه ارزیابی پایان‌نامه‌ها</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/08/10</span>
+                                <span><i class="far fa-clock"></i> ۱۴:۰۰ تا ۱۶:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> اتاق جلسات شماره ۱</span>
+                                <span class="badge badge-success">برگزار شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-primary"><i class="fas fa-file-alt"></i></button>
+                        </div>
+                    </li>
+                    
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">کارگاه آموزش مقاله‌نویسی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/08/05</span>
+                                <span><i class="far fa-clock"></i> ۰۸:۰۰ تا ۱۲:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> سالن کنفرانس</span>
+                                <span class="badge badge-success">برگزار شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-primary"><i class="fas fa-file-alt"></i></button>
+                        </div>
+                    </li>
+                    
+                    <li class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">هماهنگی اردوی علمی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-calendar-alt"></i> 1404/07/28</span>
+                                <span><i class="far fa-clock"></i> ۱۰:۰۰ تا ۱۱:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> دفتر مدیر</span>
+                                <span class="badge badge-success">برگزار شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-primary"><i class="fas fa-file-alt"></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="calendar">
+            <div class="calendar-container">
+                <div class="mini-calendar">
+                    <div class="calendar-header">
+                        <h3 class="calendar-title">آذر 1404</h3>
+                        <div>
+                            <button class="btn btn-primary btn-sm"><i class="fas fa-chevron-right"></i></button>
+                            <button class="btn btn-primary btn-sm"><i class="fas fa-chevron-left"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">ش</div>
+                        <div class="calendar-day-header">ی</div>
+                        <div class="calendar-day-header">د</div>
+                        <div class="calendar-day-header">س</div>
+                        <div class="calendar-day-header">چ</div>
+                        <div class="calendar-day-header">پ</div>
+                        <div class="calendar-day-header">ج</div>
+                        
+                        <div class="calendar-day other-month">۳۰</div>
+                        <div class="calendar-day">۱</div>
+                        <div class="calendar-day">۲</div>
+                        <div class="calendar-day">۳</div>
+                        <div class="calendar-day">۴</div>
+                        <div class="calendar-day">۵</div>
+                        <div class="calendar-day">۶</div>
+                        
+                        <div class="calendar-day">۷</div>
+                        <div class="calendar-day">۸</div>
+                        <div class="calendar-day">۹</div>
+                        <div class="calendar-day">۱۰</div>
+                        <div class="calendar-day">۱۱</div>
+                        <div class="calendar-day">۱۲</div>
+                        <div class="calendar-day">۱۳</div>
+                        
+                        <div class="calendar-day">۱۴</div>
+                        <div class="calendar-day today has-meeting">۱۵</div>
+                        <div class="calendar-day">۱۶</div>
+                        <div class="calendar-day">۱۷</div>
+                        <div class="calendar-day has-meeting">۱۸</div>
+                        <div class="calendar-day">۱۹</div>
+                        <div class="calendar-day has-meeting">۲۰</div>
+                        
+                        <div class="calendar-day">۲۱</div>
+                        <div class="calendar-day">۲۲</div>
+                        <div class="calendar-day">۲۳</div>
+                        <div class="calendar-day">۲۴</div>
+                        <div class="calendar-day has-meeting">۲۵</div>
+                        <div class="calendar-day">۲۶</div>
+                        <div class="calendar-day">۲۷</div>
+                        
+                        <div class="calendar-day">۲۸</div>
+                        <div class="calendar-day">۲۹</div>
+                        <div class="calendar-day">۳۰</div>
+                        <div class="calendar-day other-month">۱</div>
+                        <div class="calendar-day other-month">۲</div>
+                        <div class="calendar-day other-month">۳</div>
+                        <div class="calendar-day other-month">۴</div>
+                    </div>
+                </div>
+                
+                <div class="meeting-details">
+                    <div class="meeting-details-header">
+                        <h2 class="meeting-details-title">جلسات امروز - ۱۵ آذر 1404</h2>
+                        <button class="btn btn-primary"><i class="fas fa-plus"></i> افزودن جلسه</button>
+                    </div>
+                    
+                    <div class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">جلسه هماهنگی مسابقات علمی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-clock"></i> ۱۰:۰۰ تا ۱۱:۳۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> سالن کنفرانس پژوهش سرا</span>
+                                <span class="badge badge-success">تأیید شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="meeting-item">
+                        <div class="meeting-info">
+                            <h3 class="meeting-title">بررسی عملکرد گروه زیست‌شناسی</h3>
+                            <div class="meeting-meta">
+                                <span><i class="far fa-clock"></i> ۱۳:۳۰ تا ۱۵:۰۰</span>
+                                <span><i class="fas fa-map-marker-alt"></i> اتاق جلسات شماره ۳</span>
+                                <span class="badge badge-success">تأیید شده</span>
+                            </div>
+                        </div>
+                        <div class="meeting-actions">
+                            <button class="btn btn-success"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Meeting Modal -->
+    <div class="modal" id="meetingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">برنامه‌ریزی جلسه جدید</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <form id="meetingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="meetingTitle">عنوان جلسه</label>
+                        <input type="text" id="meetingTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="meetingType">نوع جلسه</label>
+                        <select id="meetingType" class="form-control" required>
+                            <option value="">-- انتخاب کنید --</option>
+                            <option value="regular">جلسه عادی</option>
+                            <option value="workshop">کارگاه آموزشی</option>
+                            <option value="evaluation">جلسه ارزیابی</option>
+                            <option value="coordination">جلسه هماهنگی</option>
+                            <option value="other">سایر</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="meetingDate">تاریخ جلسه</label>
+                        <input type="text" id="meetingDate" class="form-control" placeholder="انتخاب تاریخ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="meetingTime">زمان جلسه</label>
+                        <input type="text" id="meetingTime" class="form-control" placeholder="انتخاب زمان" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="meetingLocation">محل برگزاری</label>
+                    <select id="meetingLocation" class="form-control" required>
+                        <option value="">-- انتخاب محل --</option>
+                        <option value="conference">سالن کنفرانس پژوهش سرا</option>
+                        <option value="room1">اتاق جلسات شماره ۱</option>
+                        <option value="room2">اتاق جلسات شماره ۲</option>
+                        <option value="room3">اتاق جلسات شماره ۳</option>
+                        <option value="lab">آزمایشگاه مرکزی</option>
+                        <option value="vip">سالن VIP</option>
+                        <option value="director">دفتر مدیر</option>
+                        <option value="other">سایر</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="meetingDescription">توضیحات (اختیاری)</label>
+                    <textarea id="meetingDescription" class="form-control" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>شرکت‌کنندگان</label>
+                    <div class="attendees-list">
+                        <div class="attendee">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="شرکت‌کننده">
+                            دکتر احمدی
+                        </div>
+                        <div class="attendee">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="شرکت‌کننده">
+                            سرکار خانم حسینی
+                        </div>
+                        <div class="attendee">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="شرکت‌کننده">
+                            مهندس کریمی
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="margin-top: 10px;">
+                        <i class="fas fa-user-plus"></i> افزودن شرکت‌کننده
+                    </button>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">
+                    <i class="fas fa-calendar-plus"></i> ذخیره جلسه
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 1404 پژوهش سرای دانش آموزی جابر ابن حیان بروجرد. تمامی حقوق محفوظ است.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // --------------------------
+    // متغیرهای全局
+    // --------------------------
+    const meetingsData = {
+        upcoming: [
+            {
+                id: 1,
+                title: "جلسه هماهنگی مسابقات علمی",
+                date: "1402/09/15",
+                time: "10:00 تا 11:30",
+                location: "سالن کنفرانس پژوهش سرا",
+                status: "confirmed",
+                type: "coordination",
+                description: "بررسی جزئیات مسابقات علمی استانی و هماهنگی تیم‌های دانش‌آموزی",
+                attendees: [
+                    {name: "دکتر احمدی", role: "مدیر پژوهش سرا", avatar: "https://randomuser.me/api/portraits/men/32.jpg"},
+                    {name: "سرکار خانم محمدی", role: "معاون آموزشی", avatar: "https://randomuser.me/api/portraits/women/44.jpg"},
+                    {name: "مهندس کریمی", role: "سرپرست تیم رباتیک", avatar: "https://randomuser.me/api/portraits/men/75.jpg"}
+                ]
+            },
+            // ... سایر جلسات
+        ],
+        past: [
+            // ... جلسات گذشته
+        ]
+    };
+
+    // --------------------------
+    // توابع اصلی
+    // --------------------------
+    
+    // تغییر تب‌ها
+    function setupTabs() {
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // حذف کلاس active از همه تب‌ها
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // اضافه کردن کلاس active به تب انتخاب شده
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                
+                // بارگذاری داده‌ها بر اساس تب انتخاب شده
+                loadMeetingsData(tabId);
+            });
+        });
+    }
+
+    // بارگذاری داده‌های جلسات
+    function loadMeetingsData(type) {
+        const container = type === 'upcoming' ? 
+            document.querySelector('#upcoming .meetings-list') : 
+            document.querySelector('#past .meetings-list');
+        
+        container.innerHTML = '';
+        
+        meetingsData[type].forEach(meeting => {
+            const meetingItem = createMeetingElement(meeting, type);
+            container.appendChild(meetingItem);
+        });
+    }
+
+    // ایجاد عنصر جلسه
+    function createMeetingElement(meeting, listType) {
+        const li = document.createElement('li');
+        li.className = 'meeting-item';
+        li.dataset.id = meeting.id;
+        
+        // وضعیت جلسه
+        let statusBadge = '';
+        if (listType === 'upcoming') {
+            statusBadge = meeting.status === 'confirmed' ? 
+                '<span class="badge badge-success">تأیید شده</span>' : 
+                '<span class="badge badge-warning">در انتظار تأیید</span>';
+        } else {
+            statusBadge = '<span class="badge badge-success">برگزار شده</span>';
+        }
+        
+        // دکمه‌های عملیات
+        let actionButtons = '';
+        if (listType === 'upcoming') {
+            actionButtons = `
+                <button class="btn btn-success view-btn"><i class="fas fa-eye"></i></button>
+                <button class="btn btn-warning edit-btn"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-danger delete-btn"><i class="fas fa-trash"></i></button>
+            `;
+        } else {
+            actionButtons = `
+                <button class="btn btn-success view-btn"><i class="fas fa-eye"></i></button>
+                <button class="btn btn-primary report-btn"><i class="fas fa-file-alt"></i></button>
+            `;
+        }
+        
+        li.innerHTML = `
+            <div class="meeting-info">
+                <h3 class="meeting-title">${meeting.title}</h3>
+                <div class="meeting-meta">
+                    <span><i class="far fa-calendar-alt"></i> ${meeting.date}</span>
+                    <span><i class="far fa-clock"></i> ${meeting.time}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> ${meeting.location}</span>
+                    ${statusBadge}
+                </div>
+            </div>
+            <div class="meeting-actions">
+                ${actionButtons}
+            </div>
+        `;
+        
+        // اضافه کردن رویدادها به دکمه‌ها
+        if (listType === 'upcoming') {
+            li.querySelector('.view-btn').addEventListener('click', () => showMeetingDetails(meeting));
+            li.querySelector('.edit-btn').addEventListener('click', () => editMeeting(meeting));
+            li.querySelector('.delete-btn').addEventListener('click', () => deleteMeeting(meeting.id));
+        } else {
+            li.querySelector('.view-btn').addEventListener('click', () => showMeetingDetails(meeting));
+            li.querySelector('.report-btn').addEventListener('click', () => generateReport(meeting.id));
+        }
+        
+        return li;
+    }
+
+    // نمایش جزئیات جلسه
+    function showMeetingDetails(meeting) {
+        const modal = createModal(`
+            <div class="modal-header">
+                <h3 class="modal-title">${meeting.title}</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="meeting-details-meta">
+                    <div class="meta-item">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>تاریخ: ${meeting.date}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>زمان: ${meeting.time}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>محل: ${meeting.location}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>نوع: ${getMeetingTypeText(meeting.type)}</span>
+                    </div>
+                </div>
+                
+                <div class="meeting-description">
+                    <h4>توضیحات جلسه:</h4>
+                    <p>${meeting.description || 'توضیحاتی ثبت نشده است.'}</p>
+                </div>
+                
+                <div class="attendees-section">
+                    <h4>شرکت‌کنندگان:</h4>
+                    <div class="attendees-list">
+                        ${meeting.attendees.map(attendee => `
+                            <div class="attendee">
+                                <img src="${attendee.avatar}" alt="${attendee.name}">
+                                <span>${attendee.name}</span>
+                                <small>${attendee.role}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary close-btn">بستن</button>
+            </div>
+        `);
+        
+        modal.querySelector('.close-btn').addEventListener('click', () => closeModal(modal));
+    }
+
+    // ایجاد جلسه جدید
+    function setupNewMeetingForm() {
+        const modal = document.getElementById('meetingModal');
+        const form = document.getElementById('meetingForm');
+        
+        // راه‌اندازی datepicker
+        flatpickr("#meetingDate", {
+            locale: "fa",
+            enableTime: false,
+            dateFormat: "Y/m/d",
+            minDate: "today",
+            defaultDate: "today"
+        });
+        
+        // راه‌اندازی timepicker
+        flatpickr("#meetingTime", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            defaultHour: 10,
+            minuteIncrement: 30
+        });
+        
+        // ارسال فرم
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newMeeting = {
+                id: Date.now(),
+                title: document.getElementById('meetingTitle').value,
+                type: document.getElementById('meetingType').value,
+                date: document.getElementById('meetingDate').value,
+                time: document.getElementById('meetingTime').value,
+                location: document.getElementById('meetingLocation').value,
+                description: document.getElementById('meetingDescription').value,
+                status: "pending",
+                attendees: []
+            };
+            
+            meetingsData.upcoming.unshift(newMeeting);
+            loadMeetingsData('upcoming');
+            
+            showToast('جلسه جدید با موفقیت ایجاد شد', 'success');
+            closeModal(modal);
+            form.reset();
+        });
+    }
+
+    // ویرایش جلسه
+    function editMeeting(meeting) {
+        const modal = document.getElementById('meetingModal');
+        const form = document.getElementById('meetingForm');
+        
+        // پر کردن فرم با داده‌های جلسه
+        document.getElementById('meetingTitle').value = meeting.title;
+        document.getElementById('meetingType').value = meeting.type;
+        document.getElementById('meetingDate').value = meeting.date;
+        document.getElementById('meetingTime').value = meeting.time.split(' تا ')[0];
+        document.getElementById('meetingLocation').value = meeting.location;
+        document.getElementById('meetingDescription').value = meeting.description || '';
+        
+        // تغییر عنوان مودال
+        modal.querySelector('.modal-title').textContent = 'ویرایش جلسه';
+        
+        // نمایش مودال
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // تغییر رفتار فرم برای ویرایش
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            
+            // به‌روزرسانی جلسه
+            Object.assign(meeting, {
+                title: document.getElementById('meetingTitle').value,
+                type: document.getElementById('meetingType').value,
+                date: document.getElementById('meetingDate').value,
+                time: document.getElementById('meetingTime').value + ' تا ' + 
+                     (parseInt(document.getElementById('meetingTime').value.split(':')[0]) + 1) + 
+                     ':' + document.getElementById('meetingTime').value.split(':')[1],
+                location: document.getElementById('meetingLocation').value,
+                description: document.getElementById('meetingDescription').value
+            });
+            
+            loadMeetingsData('upcoming');
+            showToast('جلسه با موفقیت ویرایش شد', 'success');
+            closeModal(modal);
+            form.reset();
+        };
+    }
+
+    // حذف جلسه
+    function deleteMeeting(meetingId) {
+        const confirmModal = createModal(`
+            <div class="modal-header">
+                <h3 class="modal-title">تأیید حذف جلسه</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>آیا از حذف این جلسه مطمئن هستید؟ این عمل قابل بازگشت نیست.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger confirm-delete">حذف</button>
+                <button class="btn btn-secondary cancel-btn">انصراف</button>
+            </div>
+        `);
+        
+        confirmModal.querySelector('.confirm-delete').addEventListener('click', () => {
+            meetingsData.upcoming = meetingsData.upcoming.filter(m => m.id !== meetingId);
+            loadMeetingsData('upcoming');
+            showToast('جلسه با موفقیت حذف شد', 'success');
+            closeModal(confirmModal);
+        });
+        
+        confirmModal.querySelector('.cancel-btn').addEventListener('click', () => {
+            closeModal(confirmModal);
+        });
+    }
+
+    // --------------------------
+    // توابع کمکی
+    // --------------------------
+    
+    // ایجاد مودال
+    function createModal(content) {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.style.display = 'flex';
+        
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-content';
+        modalContent.innerHTML = content;
+        
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+        
+        // اضافه کردن رویداد بستن
+        const closeBtn = modal.querySelector('.close-modal');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => closeModal(modal));
+        }
+        
+        // بستن با کلیک خارج از مودال
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal(modal);
+            }
+        });
+        
+        return modal;
+    }
+
+    // بستن مودال
+    function closeModal(modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        setTimeout(() => modal.remove(), 300);
+    }
+
+    // نمایش نوتیفیکیشن
+    function showToast(message, type) {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }, 100);
+    }
+
+    // تبدیل نوع جلسه به متن
+    function getMeetingTypeText(type) {
+        const types = {
+            'regular': 'جلسه عادی',
+            'workshop': 'کارگاه آموزشی',
+            'evaluation': 'جلسه ارزیابی',
+            'coordination': 'جلسه هماهنگی',
+            'other': 'سایر'
+        };
+        return types[type] || type;
+    }
+
+    // --------------------------
+    // راه‌اندازی اولیه
+    // --------------------------
+    setupTabs();
+    setupNewMeetingForm();
+    loadMeetingsData('upcoming');
+    
+    // رویدادهای دکمه‌ها
+    document.getElementById('addMeetingBtn').addEventListener('click', () => {
+        const modal = document.getElementById('meetingModal');
+        modal.querySelector('.modal-title').textContent = 'برنامه‌ریزی جلسه جدید';
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
+});
+    </script>
+</body>
+</html>
